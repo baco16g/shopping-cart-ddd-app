@@ -65,8 +65,11 @@ function* subscribeToRequestLogin(): * {
             ...camelizeKeys(payload['data']['user'])
           })
         )
+        alert('ログインが成功しました')
+        location.href = '/'
         break
       case -2:
+        alert('ログインが失敗しました')
         // throw new SubmissionError({})
         continue
       default:
