@@ -1,0 +1,35 @@
+.prdcts-Items
+	display flex
+	flex-wrap wrap
+	padding 12px
+
+.prdcts-Item
+	margin-top 12px
+	margin-left 12px
+	padding 15px
+	width calc(((100% - (12px * 4)) / 5))
+	border 1px solid $gray
+	border-radius 3px
+
+	&:nth-child(5n+1)
+		margin-left 0
+
+	&:nth-child(-n+5)
+		margin-top 0
+
+.prdcts-Item_Data
+	margin-top 6px
+	padding-top 6px
+	border-top dashed 1px $gray
+
+.prdcts-Item_Name
+	color $black
+	word-break break-all
+	font-size 12px
+	line-height 1.5
+
+.prdcts-Item_Price
+	margin-top 9px
+	color $notice
+	font-weight bold
+	font-size 15px

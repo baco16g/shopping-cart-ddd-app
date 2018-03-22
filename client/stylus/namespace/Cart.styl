@@ -1,0 +1,53 @@
+.crt-Container
+	display flex
+
+.crt-Box
+	padding 24px
+	border-style solid
+	border-color $gray
+	border-top-width 1px
+	border-right-width 1px
+	border-bottom-width 1px
+
+	&:first-child
+		border-left-width 1px
+
+.crt-CartItems
+	width 70%
+
+.crt-Item
+	display flex
+	align-items center
+	padding 12px 0
+	width 500px
+
+	&:not(:first-child)
+		border-top solid 1px $gray
+
+.crt-Item_Thumb
+	width 100px
+
+.crt-Item_Data
+	padding 12px
+	width calc(100% - 200px)
+
+.crt-Item_Name
+	color $black
+	word-break break-all
+	font-size 15px
+	line-height 1.5
+
+.crt-Item_Price
+	margin-top 9px
+	color $notice
+	font-weight bold
+	font-size 18px
+
+.crt-PaymentNav
+	width 30%
+
+.crt-PaymentNav_Button
+	width 100%
+	color $black
+	font-weight bold
+	font-size 15px

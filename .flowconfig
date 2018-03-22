@@ -1,0 +1,13 @@
+[ignore]
+./**/*.json
+
+[include]
+
+[libs]
+./node_modules/immutable/dist/immutable.js.flow
+
+[lints]
+
+[options]
+module.name_mapper='^~/\(.*\)$' -> '<PROJECT_ROOT>/client/scripts/\1'
+module.name_mapper='^test/\(.*\)$' -> '<PROJECT_ROOT>/test/\1'
