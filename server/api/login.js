@@ -43,10 +43,10 @@ module.exports = (req, res) => {
   if (!isAuth(db, { email, password })) {
     const message = 'Incorrect email or password'
     res.status(200).json({ status: -2, message })
+  } else {
+    const user = getUser(db, { email, password })
+    const token = createToken({ email, password })
+    const payload = Object.assign({}, { user }, { status: 0, token })
+    res.status(200).json(payload)
   }
-
-  const user = getUser(db, { email, password })
-  const token = createToken({ email, password })
-  const payload = Object.assign({}, { user }, { status: 0, token })
-  res.status(200).json(payload)
 }
