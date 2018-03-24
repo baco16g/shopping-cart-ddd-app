@@ -14,7 +14,7 @@ export default enhancer(({ actions, goToPayment }) => {
   return (
     <div className="crt-Box crt-PaymentNav">
       <button className="crt-PaymentNav_Button" onClick={goToPayment}>
-        注文する
+        Proceed to checkout
       </button>
     </div>
   )

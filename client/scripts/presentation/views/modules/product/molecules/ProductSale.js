@@ -26,7 +26,7 @@ export default enhancer(({ productVM, cartVM, addItemToCart }) => {
         onClick={() => addItemToCart({ productCode, itemExists })}
         disabled={productStock < 1}
       >
-        Add Cart
+        Add to Cart
       </button>
     </div>
   )
