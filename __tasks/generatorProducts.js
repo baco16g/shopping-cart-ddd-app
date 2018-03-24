@@ -6,7 +6,7 @@ const mkdirp = require('mkdirp')
 const faker = require('faker')
 const PATH = require('../config/path')
 const PRODUCTS_PATH = '/common/products'
-const MAX_LENGTH = 30
+const MAX_LENGTH = 15
 faker.locale = 'ja'
 
 const generateRandomString = (radix, length) => {
@@ -36,7 +36,7 @@ const saveThumb = (url, productCode, ouputPath) => {
 
 const list = new Array(MAX_LENGTH).fill(0).map(() => {
   const productCode = faker.random.uuid()
-  const thumbUrl = `${faker.image.food()}?${faker.random.number()}`
+  const thumbUrl = `https://loremflickr.com/680/480?${faker.random.number()}`
   saveThumb(thumbUrl, productCode, path.join(PATH.IMAGE_DEST, PRODUCTS_PATH))
   return {
     product_code: productCode,
