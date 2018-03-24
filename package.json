@@ -23,7 +23,7 @@
     "build:css:dev": "stylus ./client/stylus/common.styl --out ./public/assets/styles/common.css --use autoprefixer-stylus --watch",
     "build:css:prod": "stylus ./client/stylus/common.styl --out ./public/assets/styles/common.css --use autoprefixer-stylus --compress",
     "build:html:prod": "pug ./client/templates --basedir ./client/templates/ --pretty --out ./public/",
-    "generage:db": "json-merge ./server/db/index.json ./server/db/tables/*.json > ./server/db/index.json",
+    "generate:db": "json-merge ./server/db/index.json ./server/db/tables/*.json > ./server/db/index.json",
     "generate:db:products": "node ./__tasks/generatorProducts.js > ./server/db/tables/products.json",
     "sync": "rsync -auvz --delete --ignore-times --checksum --exclude='.*' ./public/ ./htdocs/",
     "preview": "run-s del mkdir build:*:prod",
