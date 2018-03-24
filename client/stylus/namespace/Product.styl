@@ -2,14 +2,13 @@
 	display flex
 	flex-wrap wrap
 	justify-content center
-	padding 12px
-
-.prdct-Container_Thumb
+	margin 0 auto
 	width 500px
+	box-shadow 0 1px 35px 0 rgba(0, 0, 0, .3)
 
+// .prdct-Container_Thumb
 .prdct-Container_Data
-	margin-left 36px
-	width 350px
+	padding 36px
 
 .prdct-Details_Name
 	padding-bottom 6px
@@ -26,19 +25,23 @@
 	font-size 15px
 	line-height 1.5
 
-.prdct-Details_Price
+.prdct-Sale
+	border-top dashed 1px $black
+	padding-top 12px
+	margin-top 12px
+
+.prdct-Sale_Price
+	color $notice
+	font-weight bold
+	font-size 21px
+
+.prdct-Sale_Stock
 	margin-top 12px
 	color $notice
 	font-weight bold
 	font-size 18px
 
-.prdct-Details_Stock
-	margin-top 12px
-	color $black
-	font-weight bold
-	font-size 15px
-
-.prdct-Details_Button
+.prdct-Sale_Button
 	margin-top 12px
 	width 100%
 	color $black
