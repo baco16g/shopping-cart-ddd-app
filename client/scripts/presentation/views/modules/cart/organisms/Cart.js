@@ -20,13 +20,21 @@ export default enhancer(({ actions, commonVM, productsVM, cartVM }) => {
 
   return (
     <Fragment>
-      {isFetching || cartItems.size <= 0 ? (
+      {isFetching ? (
         'Loading'
       ) : (
         <div className="crt-Container">
-          <div className="crt-Box crt-CartItems">{cartItems}</div>
-          <TotalAmount {...{ productsVM, cartVM }} />
-          <PaymentNav {...{ actions }} />
+          {cartItems.size > 0 ? (
+            <Fragment>
+              <div className="crt-Box crt-CartItems">{cartItems}</div>
+              <TotalAmount {...{ productsVM, cartVM }} />
+              <PaymentNav {...{ actions }} />
+            </Fragment>
+          ) : (
+            <div className="crt-Box">
+              <span>Cart is empty...</span>
+            </div>
+          )}
         </div>
       )}
     </Fragment>
