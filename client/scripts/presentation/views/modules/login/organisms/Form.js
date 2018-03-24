@@ -15,40 +15,36 @@ const enhancer: HOC<*, *> = compose(
 )
 
 export default enhancer(
-  ({
-    actions,
-    commonVM,
-    customerVM,
-    submitHandler,
-    handleSubmit,
-    pristine,
-    submitting,
-    reset
-  }) => {
+  ({ commonVM, submitHandler, handleSubmit, pristine, submitting }) => {
     const isFetching: boolean = commonVM.hasEventkeyInFetchingQueue()
 
     return (
       <Fragment>
-        <form onSubmit={handleSubmit(submitHandler)}>
-          <div>
-            <label htmlFor="email">Email</label>
-            <Field name="email" component="input" type="email" />
+        {isFetching ? (
+          ''
+        ) : (
+          <div className="login-Container">
+            <div className="login-Container_inner">
+              <form onSubmit={handleSubmit(submitHandler)}>
+                <div className="login-Form_group">
+                  <label htmlFor="email">Email</label>
+                  <Field name="email" component="input" type="email" />
+                </div>
+                <div className="login-Form_group">
+                  <label htmlFor="password">Password</label>
+                  <Field name="password" component="input" type="password" />
+                </div>
+                <button
+                  className="login-Form_Submmit"
+                  type="submit"
+                  disabled={pristine || submitting}
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <Field name="password" component="input" type="password" />
-          </div>
-          <button type="submit" disabled={pristine || submitting}>
-            Submit
-          </button>
-          <button
-            type="button"
-            disabled={pristine || submitting}
-            onClick={reset}
-          >
-            Clear Values
-          </button>
-        </form>
+        )}
       </Fragment>
     )
   }
