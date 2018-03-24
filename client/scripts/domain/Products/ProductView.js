@@ -12,7 +12,7 @@ export default class ProductViewModel extends ProductModel({}) {
   }
   getFormattedPrice(): string {
     const _saleInfo = this.getSaleInfo()
-    return _saleInfo.getAmount() + _saleInfo.getCurrencyCode()
+    return `${_saleInfo.getAmount()} ${_saleInfo.getCurrencyCode()}`
   }
   getStockQuantityLabel(): InnerHTMLString {
     const _stockInfo = this.getStockInfo()

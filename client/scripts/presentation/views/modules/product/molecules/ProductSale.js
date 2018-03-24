@@ -13,22 +13,21 @@ const enhancer: HOC<*, *> = compose(
 export default enhancer(({ productVM, cartVM, addItemToCart }) => {
   const productCode: string = productVM.getProductCode()
   const productStock = productVM.getStockQuantityLabel()
+  const formattedPrice: string = productVM.getFormattedPrice()
   const targetItem: CartItemModel = cartVM.getCartItemByProductCode(productCode)
   const itemExists: boolean = targetItem ? targetItem.getQuantity() > 0 : false
 
   return (
-    <Fragment>
-      <p
-        className="prdct-Details_Stock"
-        dangerouslySetInnerHTML={productStock}
-      />
+    <div className="prdct-Sale">
+      <h4 className="prdct-Sale_Price">{formattedPrice}</h4>
+      <p className="prdct-Sale_Stock" dangerouslySetInnerHTML={productStock} />
       <button
-        className="prdct-Details_Button"
+        className="prdct-Sale_Button"
         onClick={() => addItemToCart({ productCode, itemExists })}
         disabled={productStock < 1}
       >
         Add Cart
       </button>
-    </Fragment>
+    </div>
   )
 })

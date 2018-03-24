@@ -4,7 +4,7 @@ import { compose, pure, type HOC } from 'recompose'
 import connector from '~/presentation/views/modules/product/hocs/connector'
 import ProductDetails from '~/presentation/views/modules/product/molecules/ProductDetails'
 import ProductThumb from '~/presentation/views/modules/product/molecules/ProductThumb'
-import CartDetails from '~/presentation/views/modules/product/molecules/CartDetails'
+import ProductSale from '~/presentation/views/modules/product/molecules/ProductSale'
 
 const enhancer: HOC<*, *> = compose(connector, pure)
 
@@ -29,7 +29,7 @@ export default enhancer(({ actions, commonVM, productsVM, cartVM }) => {
             <div className="prdct-Container_Data">
               <Fragment>
                 <ProductDetails {..._props} />
-                <CartDetails {..._props} />
+                <ProductSale {..._props} />
               </Fragment>
             </div>
           </Fragment>
