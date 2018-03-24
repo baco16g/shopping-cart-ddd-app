@@ -29,6 +29,27 @@ const ProductsModel = (def?: any) =>
         product => product.getProductCode() === productCode
       )
     }
+    computeTotalAmount(
+      items: { productCode: string, quantity: number }[]
+    ): number {
+      return items.reduce((acc: number, { productCode, quantity }) => {
+        const _productVM = this.selectProductByProductCode(productCode)
+        const _amount = _productVM.getSaleInfo().getPrice()
+        return acc + +(_amount * quantity)
+      }, 0)
+    }
+    exactCurrencyCode(items: { productCode: string }[]): string | boolean {
+      const _baseCurrencyCode = this.selectProductByProductCode(
+        items[0].productCode
+      )
+        .getSaleInfo()
+        .getCurrencyCode()
+      const _isEqual = items.every(({ productCode }) => {
+        const _productVM = this.selectProductByProductCode(productCode)
+        return _productVM.getSaleInfo().getCurrencyCode() === _baseCurrencyCode
+      })
+      return _isEqual ? _baseCurrencyCode : false
+    }
 
     /**********************
      * Setter

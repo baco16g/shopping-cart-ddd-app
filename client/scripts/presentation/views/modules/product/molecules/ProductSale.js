@@ -1,5 +1,5 @@
 /* @flow */
-import React, { Fragment } from 'react'
+import React from 'react'
 import { compose, pure, withHandlers, type HOC } from 'recompose'
 import addItemToCart from '~/presentation/views/modules/product/hocs/withHandlers/addItemToCart'
 
