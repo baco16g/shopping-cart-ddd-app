@@ -8,7 +8,7 @@ const { types, creators, reducer } = createActionReducer(
     'restoreCartItems',
     'pushCartItem',
     'increaseQuantityOfCartItem',
-    'updateQuantity',
+    'updateQuantityOfCartItem',
     'goToPayment',
     'restoreFailed'
   ],

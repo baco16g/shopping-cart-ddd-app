@@ -24,13 +24,16 @@ const CartModel = (def?: any) =>
     getCartItemsJS(): CartItemModel[] {
       return this.getCartItems().toJS()
     }
-    getCartItemByProductCode(productCode: string): CartItemModel {
+    selectCartItemByProductCode(productCode: string): CartItemModel {
       return this.getCartItems().find(item => item.productCode === productCode)
     }
 
     /**********************
      * Setter
      **********************/
+    resetCartItems(): CartModel {
+      return this.set('cartItems', List([]))
+    }
     restoreCartItems(src: any[]): CartModel {
       if (src === null) return this
       const deserializedList: List<CartModel> = fromJS(src).map(m => {
@@ -45,10 +48,6 @@ const CartModel = (def?: any) =>
       return this.set('cartItems', deserializedList)
     }
 
-    resetCartItems(): CartModel {
-      return this.set('cartItems', List([]))
-    }
-
     pushCartItem({
       productCode,
       quantity
@@ -60,10 +59,34 @@ const CartModel = (def?: any) =>
         items.push(new (CartItemModel({}))({ productCode, quantity }))
       )
     }
-
     removeCartItem(id: string): CartModel {
       const index: number = this._getCartItemIndexByID(id)
       return this.update('list', list => list.delete(index))
+    }
+
+    updateQuantityOfCartItem({
+      productCode,
+      quantity
+    }: {
+      productCode: string,
+      quantity: number
+    }): CartItemModel {
+      return this.update('cartItems', list => {
+        const _targetIdx = this._getCartItemIndexByProductCode(productCode)
+        return list.update(_targetIdx, m => m.updateQuantity(quantity))
+      })
+    }
+    increaseQuantityOfCartItem(productCode: string): CartViewModel {
+      return this.update('cartItems', list => {
+        const _targetIdx = this._getCartItemIndexByProductCode(productCode)
+        return list.update(_targetIdx, m => m.increaseQuantity())
+      })
+    }
+    decreaseQuantityOfCartItem(productCode: string): CartViewModel {
+      return this.update('cartItems', list => {
+        const _targetIdx = this._getCartItemIndexByProductCode(productCode)
+        return list.update(_targetIdx, m => m.decreaseQuantity())
+      })
     }
 
     /**********************

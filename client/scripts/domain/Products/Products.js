@@ -24,7 +24,7 @@ const ProductsModel = (def?: any) =>
     getProductListJS(): any[] {
       return this.getProductList().toJS()
     }
-    getProductByProductCode(productCode: string): ProductViewModel {
+    selectProductByProductCode(productCode: string): ProductViewModel {
       return this.getProductList().find(
         product => product.getProductCode() === productCode
       )

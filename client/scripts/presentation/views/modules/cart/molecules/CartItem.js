@@ -7,6 +7,7 @@ import updateCartItemQuantity from '~/presentation/views/modules/cart/hocs/withH
 const enhancer: HOC<*, *> = compose(
   withHandlers({
     updateCartItemQuantity
+    updateCartItemQuantity,
   }),
   pure
 )
@@ -14,7 +15,7 @@ const enhancer: HOC<*, *> = compose(
 export default enhancer(
   ({ actions, productsVM, cartItemVM, updateCartItemQuantity }) => {
     const productCode = cartItemVM.getProductCode()
-    const productVM = productsVM.getProductByProductCode(productCode)
+    const productVM = productsVM.selectProductByProductCode(productCode)
 
     if (!productVM) actions.restoreFailed()
 
@@ -52,7 +53,7 @@ export default enhancer(
           <div className="crt-Item_Stock">
             <select
               defaultValue={cartItemQuantity}
-              onChange={updateCartItemQuantity}
+              onChange={e => updateCartItemQuantity(e, { productCode })}
             >
               {stockOptions}
             </select>

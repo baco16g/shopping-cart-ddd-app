@@ -3,7 +3,7 @@ import ValueObject from '~/domain/ValueObject'
 
 const props = (def: any): ProductSaleInfoSchema => {
   return {
-    amount: 0,
+    price: 0,
     currencyCode: '',
     ...def
   }
@@ -14,8 +14,8 @@ const ProductSaleInfo = (def?: any) =>
     /**********************
      * Getter
      **********************/
-    getAmount(): number {
-      return this.get('amount')
+    getPrice(): number {
+      return this.get('price')
     }
     getCurrencyCode(): string {
       return this.get('currencyCode')

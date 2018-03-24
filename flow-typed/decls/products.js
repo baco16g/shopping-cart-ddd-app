@@ -40,7 +40,7 @@ declare class ProductViewModel extends ProductModel {
 /* eslint-disable */
 declare class ProductSaleInfo {
   /* eslint-disable */
-  getAmount: () => number,
+  getPrice: () => number,
   getCurrencyCode: () => string
 }
 
@@ -62,6 +62,6 @@ declare class ProductsViewModel {
   getProductListSize: () => number,
   getProductList: () => List<ProductViewModel>,
   getProductListJS: () => any[],
-  getProductByProductCode: string => ProductViewModel,
+  selectProductByProductCode: string => ProductViewModel,
   pushProduct: ({ product: ProductSchema }) => ProductsViewModel
 }

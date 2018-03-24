@@ -11,7 +11,7 @@ const enhancer: HOC<*, *> = compose(connector, pure)
 export default enhancer(({ actions, commonVM, productsVM, cartVM }) => {
   const isFetching: boolean = commonVM.hasEventkeyInFetchingQueue()
   const queryProductCode: string = commonVM.selectQueryValueByKey('productCode')
-  const productVM: ProductViewModel = productsVM.getProductByProductCode(
+  const productVM: ProductViewModel = productsVM.selectProductByProductCode(
     queryProductCode
   )
   const _props = { actions, productVM, cartVM }

@@ -14,7 +14,9 @@ export default enhancer(({ productVM, cartVM, addItemToCart }) => {
   const productCode: string = productVM.getProductCode()
   const productStock = productVM.getStockQuantityLabel()
   const formattedPrice: string = productVM.getFormattedPrice()
-  const targetItem: CartItemModel = cartVM.getCartItemByProductCode(productCode)
+  const targetItem: CartItemModel = cartVM.selectCartItemByProductCode(
+    productCode
+  )
   const itemExists: boolean = targetItem ? targetItem.getQuantity() > 0 : false
 
   return (

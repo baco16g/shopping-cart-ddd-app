@@ -20,9 +20,9 @@ declare class CartItemModel extends Entity {
 declare class CartModel extends Entity {
   /* eslint-disable */
   getCartItems: () => string,
-  getCartItemByProductCode: string => CartItemModel,
-  restoreCartItems: any[] => CartModel,
+  selectCartItemByProductCode: string => CartItemModel,
   resetCartItems: () => CartModel,
+  restoreCartItems: any[] => CartModel,
   pushCartItem: CartItemSchema => CartModel,
   removeCartItem: string => CartModel,
   _getCartItemIndexByID: string => number,
