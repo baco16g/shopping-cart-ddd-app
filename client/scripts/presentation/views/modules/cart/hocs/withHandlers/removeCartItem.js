@@ -4,6 +4,7 @@ type OuterProps = {
   actions: Object
 }
 
-export default ({ actions }: OuterProps) => ({ id }: { id: string }) => {
-  actions.removeCartItem(id)
+export default ({ actions }: OuterProps) => async ({ id }: { id: string }) => {
+  await actions.removeCartItem(id)
+  await actions.saveCartItems()
 }

@@ -39,6 +39,14 @@ function* resetCartItems(): * {
 /**********************************
  * subscribe Domain Actions
  *********************************/
+function* subscribeToSaveCartItems(): * {
+  while (true) {
+    yield take(CartTypes.saveCartItems)
+    yield call(wait, 100)
+    yield fork(saveCartItems)
+  }
+}
+
 function* subscribeToRestoreFailed(): * {
   while (true) {
     yield take(CartTypes.restoreFailed)
@@ -75,6 +83,7 @@ function* subscribeToGoingToPayment(): * {
 
 export default function*(): * {
   yield fork(restoreCartItems)
+  yield fork(subscribeToSaveCartItems)
   yield fork(subscribeToRestoreFailed)
   yield fork(subscribeToAddItemToCart)
   yield fork(subscribeToGoingToPayment)

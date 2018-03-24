@@ -4,12 +4,13 @@ type OuterProps = {
   actions: Object
 }
 
-export default ({ actions }: OuterProps) => (
+export default ({ actions }: OuterProps) => async (
   e: Event,
   { productCode }: { productCode: string }
 ) => {
-  actions.updateQuantityOfCartItem({
+  await actions.updateQuantityOfCartItem({
     productCode: productCode,
     quantity: e.target.value
   })
+  await actions.saveCartItems()
 }
