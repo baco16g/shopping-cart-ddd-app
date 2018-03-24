@@ -3,17 +3,25 @@ import React, { Fragment } from 'react'
 import { compose, pure, withHandlers, type HOC } from 'recompose'
 import { times } from 'lodash'
 import updateCartItemQuantity from '~/presentation/views/modules/cart/hocs/withHandlers/updateCartItemQuantity'
+import removeCartItem from '~/presentation/views/modules/cart/hocs/withHandlers/removeCartItem'
 
 const enhancer: HOC<*, *> = compose(
   withHandlers({
-    updateCartItemQuantity
     updateCartItemQuantity,
+    removeCartItem
   }),
   pure
 )
 
 export default enhancer(
-  ({ actions, productsVM, cartItemVM, updateCartItemQuantity }) => {
+  ({
+    actions,
+    productsVM,
+    cartItemVM,
+    updateCartItemQuantity,
+    removeCartItem
+  }) => {
+    const id = cartItemVM.getID()
     const productCode = cartItemVM.getProductCode()
     const productVM = productsVM.selectProductByProductCode(productCode)
 
@@ -57,6 +65,9 @@ export default enhancer(
             >
               {stockOptions}
             </select>
+          </div>
+          <div className="crt-Item_Delete">
+            <button onClick={() => removeCartItem({ id })}>Delete</button>
           </div>
         </Fragment>
       </div>

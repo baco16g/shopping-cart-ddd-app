@@ -61,7 +61,7 @@ const CartModel = (def?: any) =>
     }
     removeCartItem(id: string): CartModel {
       const index: number = this._getCartItemIndexByID(id)
-      return this.update('list', list => list.delete(index))
+      return this.update('cartItems', list => list.delete(index))
     }
 
     updateQuantityOfCartItem({

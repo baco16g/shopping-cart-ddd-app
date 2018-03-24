@@ -7,6 +7,7 @@ const { types, creators, reducer } = createActionReducer(
     'addItemToCart',
     'restoreCartItems',
     'pushCartItem',
+    'removeCartItem',
     'increaseQuantityOfCartItem',
     'updateQuantityOfCartItem',
     'goToPayment',
