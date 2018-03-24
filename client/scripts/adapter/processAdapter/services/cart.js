@@ -6,6 +6,7 @@ import {
   deleteLocalStorageByKey,
   wait
 } from '~/adapter/processAdapter/services/utils/storage'
+import { creators as commonCreators } from '~/port/redux/common'
 import {
   creators as cartCreators,
   types as CartTypes
@@ -16,8 +17,12 @@ import {
  *********************************/
 
 function* restoreCartItems(): * {
+  yield put(commonCreators.pushFetchingQueue({ eventkey: 'restoreCartItems' }))
   const src: any[] = yield call(loadLocalStorageByKey, 'cart')
   yield put(cartCreators.restoreCartItems(src))
+  yield put(
+    commonCreators.deleteFetchingQueue({ eventkey: 'restoreCartItems' })
+  )
 }
 
 function* saveCartItems(): * {
