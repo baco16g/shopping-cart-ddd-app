@@ -1,7 +1,8 @@
 .crt-Container
   card()
-  width 500px
+
   margin 0 auto
+  width 500px
 
 .crt-Box
   padding 24px
@@ -11,12 +12,23 @@
   align-items center
   padding 12px 0
 
+  &:not(:first-child)
+    border-top dashed 1px $gray
+
 .crt-Item_Thumb
-  width 30%
+  width 20%
 
 .crt-Item_Data
   padding 12px
-  width 70%
+  width 50%
+
+.crt-Item_Stock
+  width 10%
+
+.crt-Item_Delete
+  padding 12px
+  width 20%
+  text-align center
 
 .crt-Item_Name
   color $black
@@ -32,3 +44,13 @@
 
 .crt-PaymentNav_Button
   btn()
+
+.crt-TotalAmount
+  margin 0 24px
+  padding 12px
+  border-top dashed 2px $notice
+  border-bottom solid 2px $notice
+  color $notice
+  text-align right
+  font-weight bold
+  font-size 24px
