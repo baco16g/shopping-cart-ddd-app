@@ -1,0 +1,31 @@
+doctype html
+html(lang='ja')
+  head
+    block title
+    meta(charset='UTF-8')
+    meta(name='viewport')(content='width=device-width, initial-scale=1')
+    link(href='https://fonts.googleapis.com/css?family=Amaranth')(rel='stylesheet')
+    link(rel='stylesheet')(href='/assets/styles/common.css')
+
+  body
+    block body
+      .layout-Wrapper
+        header
+          .st-AppHeader
+            h1.st-AppHeader_Title Redux DDD Shopping Cart Applications
+          nav
+            ul.st-Nav
+              li.st-Nav_Item
+                a(href='/products/') Products
+              li.st-Nav_Item
+                a(href='/cart/') Cart
+              li.st-Nav_Item
+                a(href='/login/') Login
+          .st-PageHeader
+            h2.st-PageHeader_Title
+              block pageTitle
+        .layout-Container
+          block container
+
+    block script
+      script(src='/assets/javascripts/vendor.bundle.js')
