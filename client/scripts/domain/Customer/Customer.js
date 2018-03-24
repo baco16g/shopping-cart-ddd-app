@@ -28,6 +28,9 @@ const CustomerModel = (def?: any) =>
     getToken(): string {
       return this.get('token')
     }
+    exist(): boolean {
+      return this.getCustomerID() !== ''
+    }
 
     /**********************
      * Setter

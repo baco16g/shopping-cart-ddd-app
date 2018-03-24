@@ -47,7 +47,7 @@ function* subscribeToRestoreFailed(): * {
 function* subscribeToAddItemToCart(): * {
   while (true) {
     yield take(CartTypes.addItemToCart)
-    yield call(wait, 1000)
+    yield call(wait, 100)
     yield fork(saveCartItems)
     window.location.href = '/cart/'
   }
@@ -56,9 +56,15 @@ function* subscribeToAddItemToCart(): * {
 function* subscribeToGoingToPayment(): * {
   while (true) {
     yield take(CartTypes.goToPayment)
-    yield call(wait, 1000)
+    yield call(wait, 100)
     yield fork(saveCartItems)
-    window.location.href = '/payment/'
+    const customerVM = yield select(state => state.customerVM)
+    const exist = customerVM.exist()
+    if (exist) {
+      window.location.href = '/payment/'
+    } else {
+      window.location.href = '/login/'
+    }
   }
 }
 
