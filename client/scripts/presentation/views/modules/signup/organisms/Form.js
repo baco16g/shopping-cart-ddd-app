@@ -5,6 +5,7 @@ import { compose, pure, withHandlers, type HOC } from 'recompose'
 import connector from '~/presentation/views/modules/signup/hocs/connector'
 import submitHandler from '~/presentation/views/modules/signup/hocs/withHandlers/submit'
 import FormCustomerInfo from '~/presentation/views/modules/signup/molecules/FormCustomerInfo'
+import FormPaymentInfo from '~/presentation/views/modules/signup/molecules/FormPaymentInfo'
 
 const enhancer: HOC<*, *> = compose(
   reduxForm({ form: 'signup' }),
@@ -28,6 +29,7 @@ export default enhancer(
             <div className="signup-Container_Inner">
               <form onSubmit={handleSubmit(submitHandler)}>
                 <FormCustomerInfo />
+                <FormPaymentInfo {...{ commonVM }} />
                 {error && <div className="signup-Form_Error">{error}</div>}
                 <button
                   className="signup-Form_Submmit"
