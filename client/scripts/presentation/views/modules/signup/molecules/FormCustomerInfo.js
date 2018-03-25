@@ -11,7 +11,7 @@ export default function FormCustomerInfo() {
         <div className="signup-Form_Group">
           <Field
             label="User Id"
-            name="id"
+            name="customerId"
             type="text"
             component={renderInputField}
             validate={[valid.required, valid.alphaNumeric]}
