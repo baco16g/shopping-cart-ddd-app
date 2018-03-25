@@ -1,14 +1,21 @@
-btn()
+btn(type)
   padding 12px 20px
   width 100%
   outline 0
   border 0
   border-radius 4px
-  background $notice
-  color $white
   text-transform uppercase
   font-weight 500
   font-size inherit
   font-family inherit
   line-height inherit
   cursor pointer
+
+  if type == 'notice'
+    background $notice
+    color $white
+
+  if type == 'white'
+    background $white
+    color $black
+    border solid  1px $black
