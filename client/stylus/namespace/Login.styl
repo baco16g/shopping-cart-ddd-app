@@ -11,49 +11,13 @@
   padding 36px
 
 .login-Form_Row
-  display flex
-  flex-wrap nowrap
-
-  > *
-    &:not(:first-child)
-      margin-left 12px
+  formRow()
 
 .login-Form_Group
-  display flex
-  flex-wrap wrap
-  justify-content space-between
-  margin 0 0 15px
-  width 100%
-
-  > label
-    display block
-    margin 0 0 10px
-    color $black
-    text-transform uppercase
-    letter-spacing .2em
-    font-weight 500
-    font-size 12px
-    line-height 1
-
-  > input
-    display block
-    box-sizing border-box
-    padding 12px 20px
-    width 100%
-    outline 0
-    border 0
-    border-radius 4px
-    background rgba(0, 0, 0, .1)
-    color $black
-    font-weight 500
-    font-size inherit
-    font-family inherit
-    line-height inherit
-    transition .3s ease
+  fromGroup()
 
 .login-Form_Error
-  color $notice
-  font-size 12px
+  error()
 
 .login-Form_Submmit
   margin-top 12px
