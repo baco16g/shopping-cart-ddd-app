@@ -10,11 +10,20 @@
 .login-Container_Inner
   padding 36px
 
+.login-Form_Row
+  display flex
+  flex-wrap nowrap
+
+  > *
+    &:not(:first-child)
+      margin-left 12px
+
 .login-Form_Group
   display flex
   flex-wrap wrap
   justify-content space-between
   margin 0 0 15px
+  width 100%
 
   > label
     display block

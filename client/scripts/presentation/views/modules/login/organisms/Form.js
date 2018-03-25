@@ -26,13 +26,17 @@ export default enhancer(
           <div className="login-Container">
             <div className="login-Container_Inner">
               <form onSubmit={handleSubmit(submitHandler)}>
-                <div className="login-Form_Group">
-                  <label htmlFor="email">Email</label>
-                  <Field name="email" component="input" type="email" />
+                <div className="login-Form_Row">
+                  <div className="login-Form_Group">
+                    <label htmlFor="email">Email</label>
+                    <Field name="email" component="input" type="email" />
+                  </div>
                 </div>
-                <div className="login-Form_Group">
-                  <label htmlFor="password">Password</label>
-                  <Field name="password" component="input" type="password" />
+                <div className="login-Form_Row">
+                  <div className="login-Form_Group">
+                    <label htmlFor="password">Password</label>
+                    <Field name="password" component="input" type="password" />
+                  </div>
                 </div>
                 {error && <div className="login-Form_Error">{error}</div>}
                 <button
