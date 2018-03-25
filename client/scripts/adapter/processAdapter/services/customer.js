@@ -1,6 +1,6 @@
 /* @flow */
 import { stopSubmit } from 'redux-form'
-import { camelizeKeys } from 'humps'
+import { camelizeKeys, decamelizeKeys } from 'humps'
 import { fork, call, put, take } from 'redux-saga/effects'
 import {
   loadLocalStorageByKey,
@@ -24,7 +24,10 @@ function* fetchCustomer(): * {
         authorization: `Bearer ${token}`
       }
     }
-    const { payload, err } = yield call(API_FUNC.GET.CUSTOMER, reqHeaders)
+    const { payload, err } = yield call(
+      API_FUNC.GET.CUSTOMER,
+      decamelizeKeys(reqHeaders)
+    )
 
     if (!payload && err) throw new Error('システムエラーが発生しました。')
 
@@ -52,7 +55,10 @@ function* fetchCustomer(): * {
 function* subscribeToRequestLogin(): * {
   while (true) {
     const { payload: reqData } = yield take(CustomerTypes.requestLogin)
-    const { payload, err } = yield call(API_FUNC.POST.LOGIN, reqData)
+    const { payload, err } = yield call(
+      API_FUNC.POST.LOGIN,
+      decamelizeKeys(reqData)
+    )
 
     if (!payload && err) throw new Error('システムエラーが発生しました。')
 
@@ -79,7 +85,10 @@ function* subscribeToRequestLogin(): * {
 function* subscribeToRequestSignup(): * {
   while (true) {
     const { payload: reqData } = yield take(CustomerTypes.requestSignup)
-    const { payload, err } = yield call(API_FUNC.POST.SIGNUP, reqData)
+    const { payload, err } = yield call(
+      API_FUNC.POST.SIGNUP,
+      decamelizeKeys(reqData)
+    )
 
     if (!payload && err) throw new Error('システムエラーが発生しました。')
 
