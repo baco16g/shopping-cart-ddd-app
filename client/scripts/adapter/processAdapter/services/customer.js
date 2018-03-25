@@ -4,7 +4,8 @@ import { camelizeKeys, decamelizeKeys } from 'humps'
 import { fork, call, put, take } from 'redux-saga/effects'
 import {
   loadLocalStorageByKey,
-  saveLocalStorageByKey
+  saveLocalStorageByKey,
+  deleteLocalStorageByKey
 } from '~/adapter/processAdapter/services/utils/storage'
 import {
   creators as customerCreators,
@@ -82,6 +83,14 @@ function* subscribeToRequestLogin(): * {
   }
 }
 
+function* subscribeToRequestLogout(): * {
+  while (true) {
+    yield take(CustomerTypes.requestLogout)
+    yield call(deleteLocalStorageByKey, 'token')
+    location.reload()
+  }
+}
+
 function* subscribeToRequestSignup(): * {
   while (true) {
     const { payload: reqData } = yield take(CustomerTypes.requestSignup)
@@ -110,5 +119,6 @@ function* subscribeToRequestSignup(): * {
 export default function*(): * {
   yield fork(fetchCustomer)
   yield fork(subscribeToRequestLogin)
+  yield fork(subscribeToRequestLogout)
   yield fork(subscribeToRequestSignup)
 }

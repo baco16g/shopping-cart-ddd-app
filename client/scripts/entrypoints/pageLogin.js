@@ -11,6 +11,7 @@ import { sagaMiddleware } from '~/adapter/processAdapter'
 import extendReducers from '~/port/lib/extendReducers'
 
 // RootView
+import ReactHeaderView from '~/presentation/views/_core/organisms/Header'
 import ReactLoginView from '~/presentation/views/modules/login'
 
 // Reducers
@@ -35,7 +36,15 @@ const rootReducer = extendReducers({
 
 const store = configureStore(rootReducer)
 
-const ViewAdaptedStore = () => {
+const HeaderViewAdaptedStore = () => {
+  return (
+    <ViewAdapter store={store}>
+      <ReactHeaderView />
+    </ViewAdapter>
+  )
+}
+
+const MainViewAdaptedStore = () => {
   return (
     <ViewAdapter store={store}>
       <ReactLoginView />
@@ -43,5 +52,6 @@ const ViewAdaptedStore = () => {
   )
 }
 
-renderViews('data-react-login-app', ViewAdaptedStore)
+renderViews('data-react-header-app', HeaderViewAdaptedStore)
+renderViews('data-react-login-app', MainViewAdaptedStore)
 runRootSaga(sagaMiddleware)([commonSaga, customerSaga])

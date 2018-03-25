@@ -9,7 +9,7 @@ const AUTH = require('../../config/auth')
  * Database
  ***********************/
 const dbPath = path.join(PATH.SERVER, '/db/index.json')
-const db = JSON.parse(fs.readFileSync(dbPath), 'UTF-8')
+const getDB = () => JSON.parse(fs.readFileSync(dbPath), 'UTF-8')
 
 /***********************
  * Private Function
@@ -38,6 +38,7 @@ const isAuth = (db, { email, password }) =>
  ***********************/
 module.exports = (req, res) => {
   const { email, password } = req.body
+  const db = getDB()
 
   if (!isAuth(db, { email, password })) {
     const message = 'Incorrect email or password'
