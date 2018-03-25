@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint:js": "eslint './client/scripts/*.js'",
+    "lint:js": "eslint './client/scripts/**/*.js'",
     "lint:css": "stylint ./client/stylus",
     "lint:html": " pug-lint ./client/templates/**/*.pug",
     "lint": "run-s lint:js lint:css lint:html",
-    "format:js": "eslint './client/scripts/*.js' --fix",
+    "format:js": "eslint './client/scripts/**/*.js' --fix",
     "format:css": "stylus-supremacy format glob './client/stylus/**/*.styl' --replace --options ./.stylintrc",
     "format": "run-s format:js format:css",
     "precommit": "lint-staged",
