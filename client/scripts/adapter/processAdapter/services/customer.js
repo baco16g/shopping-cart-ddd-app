@@ -1,5 +1,5 @@
 /* @flow */
-import { SubmissionError } from 'redux-form'
+import { stopSubmit } from 'redux-form';
 import { camelizeKeys } from 'humps'
 import { fork, call, put, take } from 'redux-saga/effects'
 import {
@@ -68,7 +68,7 @@ function* subscribeToRequestLogin(): * {
         location.href = '/'
         break
       case -2:
-        // throw new SubmissionError({})
+        yield put(stopSubmit('login', { _error: payload['data']['message'] }));
         continue
       default:
         throw new Error('該当するステータスコードが存在しません')

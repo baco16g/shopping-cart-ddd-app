@@ -15,7 +15,7 @@ const enhancer: HOC<*, *> = compose(
 )
 
 export default enhancer(
-  ({ commonVM, submitHandler, handleSubmit, pristine, submitting }) => {
+  ({ commonVM, submitHandler, handleSubmit, error, pristine, submitting }) => {
     const isFetching: boolean = commonVM.hasEventkeyInFetchingQueue()
 
     return (
@@ -34,6 +34,7 @@ export default enhancer(
                   <label htmlFor="password">Password</label>
                   <Field name="password" component="input" type="password" />
                 </div>
+                {error && <div className="login-Form_Error">{error}</div>}
                 <button
                   className="login-Form_Submmit"
                   type="submit"
