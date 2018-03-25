@@ -1,5 +1,5 @@
 /* @flow */
-import { stopSubmit } from 'redux-form';
+import { stopSubmit } from 'redux-form'
 import { camelizeKeys } from 'humps'
 import { fork, call, put, take } from 'redux-saga/effects'
 import {

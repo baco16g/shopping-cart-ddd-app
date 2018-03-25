@@ -1,9 +1,7 @@
 /* @flow */
 const path = require('path')
 const fs = require('fs')
-const jwt = require('jsonwebtoken')
 const PATH = require('../../config/path')
-const AUTH = require('../../config/auth')
 
 /***********************
  * Database

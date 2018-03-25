@@ -10,7 +10,7 @@ const enhancer: HOC<*, *> = compose(
   pure
 )
 
-export default enhancer(({ actions, goToPayment }) => {
+export default enhancer(({ goToPayment }) => {
   return (
     <div className="crt-Box crt-PaymentNav">
       <button className="crt-PaymentNav_Button" onClick={goToPayment}>
