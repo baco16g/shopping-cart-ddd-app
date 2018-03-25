@@ -11,11 +11,11 @@ btn(type)
   line-height inherit
   cursor pointer
 
-  if type == 'notice'
+  if (type == 'notice')
     background $notice
     color $white
 
-  if type == 'white'
+  if (type == 'white')
+    border solid 1px $black
     background $white
     color $black
-    border solid  1px $black
