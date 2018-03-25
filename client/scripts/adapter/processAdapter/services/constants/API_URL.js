@@ -6,7 +6,8 @@ const API_URL = {
     CUSTOMER: '/api/customer'
   },
   POST: {
-    LOGIN: '/api/login'
+    LOGIN: '/api/login',
+    SIGNUP: '/api/signup'
   }
 }
 

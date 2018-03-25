@@ -3,6 +3,7 @@
 import getProducts from '~/adapter/processAdapter/services/constants/api/getProducts'
 import fetchCustoemr from '~/adapter/processAdapter/services/constants/api/fetchCustomer'
 import login from '~/adapter/processAdapter/services/constants/api/login'
+import signup from '~/adapter/processAdapter/services/constants/api/signup'
 
 const API_FUNC = {
   GET: {
@@ -10,7 +11,8 @@ const API_FUNC = {
     CUSTOMER: fetchCustoemr
   },
   POST: {
-    LOGIN: login
+    LOGIN: login,
+    SIGNUP: signup
   }
 }
 

@@ -8,9 +8,8 @@ const AUTH = require('../../config/auth')
 /***********************
  * Database
  ***********************/
-const db = JSON.parse(
-  fs.readFileSync(path.join(PATH.SERVER, '/db/index.json'), 'UTF-8')
-)
+const dbPath = path.join(PATH.SERVER, '/db/index.json')
+const db = JSON.parse(fs.readFileSync(dbPath), 'UTF-8')
 
 /***********************
  * Private Function

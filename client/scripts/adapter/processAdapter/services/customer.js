@@ -68,7 +68,29 @@ function* subscribeToRequestLogin(): * {
         location.href = '/'
         break
       case -2:
-        yield put(stopSubmit('login', { _error: payload['data']['message'] }));
+        yield put(stopSubmit('login', { _error: payload['data']['message'] }))
+        continue
+      default:
+        throw new Error('該当するステータスコードが存在しません')
+    }
+  }
+}
+
+function* subscribeToRequestSignup(): * {
+  while (true) {
+    const { payload: reqData } = yield take(CustomerTypes.requestSignup)
+    const { payload, err } = yield call(API_FUNC.POST.SIGNUP, reqData)
+
+    if (!payload && err) throw new Error('システムエラーが発生しました。')
+
+    const status = payload['data']['status']
+    switch (status) {
+      case 0:
+        alert(payload['data']['message'])
+        location.href = '/login/'
+        break
+      case -2:
+        yield put(stopSubmit('signup', { _error: payload['data']['message'] }))
         continue
       default:
         throw new Error('該当するステータスコードが存在しません')
@@ -79,4 +101,5 @@ function* subscribeToRequestLogin(): * {
 export default function*(): * {
   yield fork(fetchCustomer)
   yield fork(subscribeToRequestLogin)
+  yield fork(subscribeToRequestSignup)
 }

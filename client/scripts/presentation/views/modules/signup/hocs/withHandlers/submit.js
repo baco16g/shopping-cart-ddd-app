@@ -5,5 +5,5 @@ type OuterProps = {
 }
 
 export default ({ actions }: OuterProps) => (values: Object) => {
-  actions.requestLogin(values)
+  actions.requestSignup(values)
 }

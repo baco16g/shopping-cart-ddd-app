@@ -3,7 +3,7 @@
 import createActionReducer from '~/port/lib/createActionReducer'
 
 const { types, creators, reducer } = createActionReducer(
-  ['requestLogin', 'setCustomer'],
+  ['requestLogin', 'requestSignup', 'setCustomer'],
   '/customer/'
 )
 

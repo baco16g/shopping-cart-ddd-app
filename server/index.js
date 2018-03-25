@@ -12,6 +12,7 @@ const renderPugAsHtml = require(path.join(
   '/middlewares/renderPugAsHtml'
 ))
 const login = require(path.join(PATH.SERVER, '/api/login'))
+const signup = require(path.join(PATH.SERVER, '/api/signup'))
 const fetchCustomer = require(path.join(PATH.SERVER, '/api/fetchCustomer'))
 
 server.use(defaultMiddlewares)
@@ -20,6 +21,7 @@ server.use(bodyParser.json())
 server.use(renderPugAsHtml)
 server.get('/api/customer', fetchCustomer)
 server.post('/api/login', login)
+server.post('/api/signup', signup)
 server.use('/api', router)
 server.listen(PORT, () => {
   console.log('JSON Server is running')
