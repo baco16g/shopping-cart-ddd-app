@@ -14,7 +14,7 @@ const CartItemModel = (def?: any) =>
     constructor(args: CartItemSchema) {
       super(args)
       return this.withMutations(m =>
-        m.set('productCode', args.productCode).set('quantity', args.quantity)
+        m.set('productCode', args.productCode).set('quantity', +args.quantity)
       )
     }
 

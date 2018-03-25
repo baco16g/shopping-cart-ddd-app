@@ -43,5 +43,8 @@
 
 .prdct-Sale_Button
   margin-top 24px
-
-  btn('notice')
+  &:not([disabled])
+    btn('notice')
+  &[disabled]
+    btn('white')
+    cursor not-allowed

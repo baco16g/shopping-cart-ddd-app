@@ -14,12 +14,11 @@ export default class ProductViewModel extends ProductModel({}) {
     const _saleInfo = this.getSaleInfo()
     return `${_saleInfo.getPrice()} ${_saleInfo.getCurrencyCode()}`
   }
-  getStockQuantityLabel(): InnerHTMLString {
-    const _stockInfo = this.getStockInfo()
+  convertStockQuantityToLabel(n: number): InnerHTMLString {
     return {
       __html: `
         <span>Stock：</span>
-        <span>${_stockInfo.getQuantity()}</span>
+        <span>${n < 1 ? 'Sorry... sold out' : n}</span>
       `
     }
   }

@@ -12,25 +12,35 @@ const enhancer: HOC<*, *> = compose(
 
 export default enhancer(({ productVM, cartVM, addItemToCart }) => {
   const productCode: string = productVM.getProductCode()
-  const productStock = productVM.getStockQuantityLabel()
   const formattedPrice: string = productVM.getFormattedPrice()
-  const targetItem: CartItemModel = cartVM.selectCartItemByProductCode(
+
+  const targetItemVM: CartItemModel = cartVM.selectCartItemByProductCode(
     productCode
   )
-  const itemExistsInCart: boolean = targetItem
-    ? targetItem.getQuantity() > 0
+  const itemExistsInCart: boolean = targetItemVM
+    ? targetItemVM.getQuantity() > 0
     : false
+
+  const itemQuantityInCart: number = targetItemVM
+    ? targetItemVM.getQuantity()
+    : 0
+  const productStockQuantity: number = productVM.getStockInfo().getQuantity()
+  const availableQuantity: number = productStockQuantity - itemQuantityInCart
+  const isSoldOut: boolean = availableQuantity < 1
+  const stockLabel: InnerHTMLString = productVM.convertStockQuantityToLabel(
+    availableQuantity
+  )
 
   return (
     <div className="prdct-Sale">
       <h4 className="prdct-Sale_Price">{formattedPrice}</h4>
-      <p className="prdct-Sale_Stock" dangerouslySetInnerHTML={productStock} />
+      <p className="prdct-Sale_Stock" dangerouslySetInnerHTML={stockLabel} />
       <button
         className="prdct-Sale_Button"
         onClick={() => addItemToCart({ productCode, itemExistsInCart })}
-        disabled={productStock < 1}
+        disabled={isSoldOut}
       >
-        Add to Cart
+        {isSoldOut ? 'Sold Out' : 'Add to Cart'}
       </button>
     </div>
   )

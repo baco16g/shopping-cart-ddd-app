@@ -32,7 +32,7 @@ export default enhancer(
     const formattedPrice = productVM.getFormattedPrice()
     const cartItemQuantity = cartItemVM.getQuantity()
     const productStockQuantity = productVM.getStockInfo().getQuantity()
-    const stockOptions = times(productStockQuantity + 1, Number).map(
+    const stockOptions = times(productStockQuantity, Number).map(
       (n: number) => {
         const val = n + 1
         return (

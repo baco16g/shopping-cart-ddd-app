@@ -34,7 +34,7 @@ declare class ProductViewModel extends ProductModel {
   /* eslint-disable */
   getThumbnailUrl: () => string,
   getFormattedPrice: () => string,
-  getStockQuantityLabel: () => InnerHTMLString
+  convertStockQuantityToLabel: () => InnerHTMLString
 }
 
 /* eslint-disable */
