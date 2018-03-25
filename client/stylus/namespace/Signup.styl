@@ -1,4 +1,4 @@
-.login-Container
+.signup-Container
   card()
 
   display flex
@@ -7,10 +7,22 @@
   margin 0 auto
   width 500px
 
-.login-Container_Inner
+.signup-Container_Inner
   padding 36px
 
-.login-Form_Row
+.signup-Form_Block
+  &:not(:first-child)
+    margin-top 24px
+
+.signup-Form_Block_hdg
+  font-size 21px
+  font-weight bold
+  color $notice
+  margin-bottom 24px
+  padding 6px 6px 6px 12px
+  border-left solid 6px $notice
+
+.signup-Form_Row
   display flex
   flex-wrap nowrap
 
@@ -18,7 +30,7 @@
     &:not(:first-child)
       margin-left 12px
 
-.login-Form_Group
+.signup-Form_Group
   display flex
   flex-wrap wrap
   justify-content space-between
@@ -51,15 +63,15 @@
     line-height inherit
     transition .3s ease
 
-.login-Form_Error
+.signup-Form_Error
   color $notice
   font-size 12px
 
-.login-Form_Submmit
+.signup-Form_Submmit
   margin-top 12px
   btn()
 
-.login-Form_SignUp
+.signup-Form_SignUp
   font-size 12px
   color $notice
   text-align center

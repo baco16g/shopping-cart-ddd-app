@@ -46,6 +46,9 @@ export default enhancer(
                 >
                   Submit
                 </button>
+                <div className="login-Form_SignUp">
+                  <a href="/signup/">New customer? Start here.</a>
+                </div>
               </form>
             </div>
           </div>
