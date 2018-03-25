@@ -34,9 +34,10 @@ export default enhancer(
     const productStockQuantity = productVM.getStockInfo().getQuantity()
     const stockOptions = times(productStockQuantity + 1, Number).map(
       (n: number) => {
+        const val = n + 1
         return (
-          <option key={n} value={n}>
-            {n}
+          <option key={n} value={val}>
+            {val}
           </option>
         )
       }
@@ -60,6 +61,7 @@ export default enhancer(
           </div>
           <div className="crt-Item_Stock">
             <select
+              className="crt-Item_Stock_select"
               defaultValue={cartItemQuantity}
               onChange={e => updateCartItemQuantity(e, { productCode })}
             >
@@ -67,7 +69,12 @@ export default enhancer(
             </select>
           </div>
           <div className="crt-Item_Delete">
-            <button onClick={() => removeCartItem({ id })}>Delete</button>
+            <button
+              className="crt-Item_Delete_button"
+              onClick={() => removeCartItem({ id })}
+            >
+              Delete
+            </button>
           </div>
         </Fragment>
       </div>
