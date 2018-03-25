@@ -17,7 +17,9 @@ export default enhancer(({ productVM, cartVM, addItemToCart }) => {
   const targetItem: CartItemModel = cartVM.selectCartItemByProductCode(
     productCode
   )
-  const itemExists: boolean = targetItem ? targetItem.getQuantity() > 0 : false
+  const itemExistsInCart: boolean = targetItem
+    ? targetItem.getQuantity() > 0
+    : false
 
   return (
     <div className="prdct-Sale">
@@ -25,7 +27,7 @@ export default enhancer(({ productVM, cartVM, addItemToCart }) => {
       <p className="prdct-Sale_Stock" dangerouslySetInnerHTML={productStock} />
       <button
         className="prdct-Sale_Button"
-        onClick={() => addItemToCart({ productCode, itemExists })}
+        onClick={() => addItemToCart({ productCode, itemExistsInCart })}
         disabled={productStock < 1}
       >
         Add to Cart

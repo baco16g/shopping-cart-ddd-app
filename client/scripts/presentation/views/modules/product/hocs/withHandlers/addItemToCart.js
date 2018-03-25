@@ -5,14 +5,14 @@ type OuterProps = {
 }
 type Props = {
   productCode: string,
-  itemExists: boolean
+  itemExistsInCart: boolean
 }
 
 export default ({ actions }: OuterProps) => ({
   productCode,
-  itemExists
+  itemExistsInCart
 }: Props) => {
-  if (itemExists) {
+  if (itemExistsInCart) {
     actions.increaseQuantityOfCartItem(productCode)
   } else {
     actions.pushCartItem({
