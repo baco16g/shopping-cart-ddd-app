@@ -24,13 +24,13 @@ export default enhancer(
           ''
         ) : (
           <div className="login-Container">
-            <div className="login-Container_inner">
+            <div className="login-Container_Inner">
               <form onSubmit={handleSubmit(submitHandler)}>
-                <div className="login-Form_group">
+                <div className="login-Form_Group">
                   <label htmlFor="email">Email</label>
                   <Field name="email" component="input" type="email" />
                 </div>
-                <div className="login-Form_group">
+                <div className="login-Form_Group">
                   <label htmlFor="password">Password</label>
                   <Field name="password" component="input" type="password" />
                 </div>
