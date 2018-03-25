@@ -4,6 +4,8 @@ import { Field, reduxForm } from 'redux-form'
 import { compose, pure, withHandlers, type HOC } from 'recompose'
 import connector from '~/presentation/views/modules/login/hocs/connector'
 import submitHandler from '~/presentation/views/modules/login/hocs/withHandlers/submit'
+import renderInputField from '~/presentation/views/_core/atoms/renderInputField'
+import * as valid from '~/presentation/views/utils/validation'
 
 const enhancer: HOC<*, *> = compose(
   reduxForm({ form: 'login' }),
@@ -28,14 +30,24 @@ export default enhancer(
               <form onSubmit={handleSubmit(submitHandler)}>
                 <div className="login-Form_Row">
                   <div className="login-Form_Group">
-                    <label htmlFor="email">Email</label>
-                    <Field name="email" component="input" type="email" />
+                    <Field
+                      label="Email"
+                      name="email"
+                      type="email"
+                      component={renderInputField}
+                      validate={[valid.required, valid.email]}
+                    />
                   </div>
                 </div>
                 <div className="login-Form_Row">
                   <div className="login-Form_Group">
-                    <label htmlFor="password">Password</label>
-                    <Field name="password" component="input" type="password" />
+                    <Field
+                      label="Password"
+                      name="password"
+                      type="password"
+                      component={renderInputField}
+                      validate={[valid.required, valid.alphaNumeric]}
+                    />
                   </div>
                 </div>
                 {error && <div className="login-Form_Error">{error}</div>}

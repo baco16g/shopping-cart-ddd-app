@@ -1,5 +1,7 @@
 import React from 'react'
 import { Field } from 'redux-form'
+import renderInputField from '~/presentation/views/_core/atoms/renderInputField'
+import * as valid from '~/presentation/views/utils/validation'
 
 export default function FormCustomerInfo() {
   return (
@@ -7,30 +9,55 @@ export default function FormCustomerInfo() {
       <h3 className="signup-Form_Block_hdg">Customer Info</h3>
       <div className="signup-Form_Row">
         <div className="signup-Form_Group">
-          <label htmlFor="id">User Id</label>
-          <Field name="id" component="input" type="text" />
+          <Field
+            label="User Id"
+            name="id"
+            type="text"
+            component={renderInputField}
+            validate={[valid.required, valid.alphaNumeric]}
+          />
         </div>
       </div>
       <div className="signup-Form_Row">
         <div className="signup-Form_Group">
-          <label htmlFor="fisrtName">First Name</label>
-          <Field name="fisrtName" component="input" type="text" />
+          <Field
+            label="First Name"
+            name="fisrtName"
+            type="text"
+            component={renderInputField}
+            validate={[valid.required, valid.alphaNumeric]}
+          />
         </div>
         <div className="signup-Form_Group">
-          <label htmlFor="lastName">Last Name</label>
-          <Field name="lastName" component="input" type="text" />
+          <Field
+            label="Last Name"
+            name="lastName"
+            type="text"
+            component={renderInputField}
+            validate={[valid.required, valid.alphaNumeric]}
+          />
         </div>
       </div>
       <div className="signup-Form_Row">
         <div className="signup-Form_Group">
-          <label htmlFor="email">Email</label>
-          <Field name="email" component="input" type="email" />
+          <Field
+            label="Email"
+            name="email"
+            type="email"
+            component={renderInputField}
+            validate={[valid.required, valid.email]}
+          />
         </div>
       </div>
       <div className="signup-Form_Row">
         <div className="signup-Form_Group">
-          <label htmlFor="password">Password</label>
-          <Field name="password" component="input" type="password" />
+          <Field
+            label="Password"
+            name="password"
+            type="password"
+            component={renderInputField}
+            validate={[valid.required, valid.alphaNumeric]}
+          />
         </div>
       </div>
     </div>
