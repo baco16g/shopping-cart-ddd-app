@@ -22,7 +22,7 @@ export default function FormCustomerInfo() {
         <div className="signup-Form_Group">
           <Field
             label="First Name"
-            name="fisrtName"
+            name="firstName"
             type="text"
             component={renderInputField}
             validate={[valid.required, valid.alphaNumeric]}

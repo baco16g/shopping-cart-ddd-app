@@ -20,10 +20,23 @@ const userExist = (db, { email }) => {
  * Main Module
  ***********************/
 module.exports = (req, res) => {
-  const { customer_id, email } = req.body
-  const volumeInfo = ({ fisrt_name, last_name } = req.body)
-  const paymentInfo = ({ card_number, expiry_month, expiry_year } = req.body)
-  const user = { customer_id, email, volumeInfo, paymentInfo }
+  const {
+    customer_id,
+    email,
+    password,
+    first_name,
+    last_name,
+    card_number,
+    expiry_month,
+    expiry_year
+  } = req.body
+  const volume_info = { first_name, last_name }
+  const payment_info = {
+    card_number,
+    expiry_month,
+    expiry_year
+  }
+  const user = { customer_id, email, password, payment_info, volume_info }
 
   const db = getDB()
   if (db.hasOwnProperty('users')) {

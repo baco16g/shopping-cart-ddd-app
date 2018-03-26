@@ -6,7 +6,7 @@ const props = (def: any): CustomerSchema => {
     customerId: '',
     email: '',
     volumeInfo: null,
-
+    paymentInfo: null,
     ...def
   }
 }
