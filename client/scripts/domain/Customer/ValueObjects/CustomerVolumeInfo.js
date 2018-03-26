@@ -11,6 +11,12 @@ const props = (def: any): CustomerVolumeInfoSchema => {
 
 const CustomerVolumeInfo = (def?: any) =>
   class extends ValueObject(props(def)) {
+    constructor(args: CustomerVolumeInfoSchema) {
+      super()
+      return this.withMutations(m =>
+        m.set('firstName', args.firstName).set('lastName', args.lastName)
+      )
+    }
     /**********************
      * Getter
      **********************/

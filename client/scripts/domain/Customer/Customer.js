@@ -1,5 +1,7 @@
 /* @flow */
 import Entity from '~/domain/Entity'
+import CustomerVolumeInfo from '~/domain/Customer/ValueObjects/CustomerVolumeInfo'
+import CustomerPaymentInfo from '~/domain/Customer/ValueObjects/CustomerPaymentInfo'
 
 const props = (def: any): CustomerSchema => {
   return {
@@ -42,10 +44,10 @@ const CustomerModel = (def?: any) =>
     setCustomer({ customerId, email, volumeInfo, paymentInfo }): CustomerModel {
       return this.withMutations(m =>
         m
-          .set('customerID', customerId)
+          .set('customerId', customerId)
           .set('email', email)
-          .set('volumeInfo', volumeInfo)
-          .set('paymentInfo', paymentInfo)
+          .set('volumeInfo', new (CustomerVolumeInfo({}))(volumeInfo))
+          .set('paymentInfo', new (CustomerPaymentInfo({}))(paymentInfo))
       )
     }
   }

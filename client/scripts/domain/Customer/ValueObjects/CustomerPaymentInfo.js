@@ -12,6 +12,15 @@ const props = (def: any): CustomerPaymentInfoSchema => {
 
 const CustomerPaymentInfo = (def?: any) =>
   class extends ValueObject(props(def)) {
+    constructor(args: CustomerPaymentInfoSchema) {
+      super()
+      return this.withMutations(m =>
+        m
+          .set('cardNumber', args.cardNumber)
+          .set('expiryMonth', args.expiryMonth)
+          .set('expiryYear', args.expiryYear)
+      )
+    }
     /**********************
      * Getter
      **********************/
