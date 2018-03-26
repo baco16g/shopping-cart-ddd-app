@@ -30,12 +30,18 @@
   fromGroup()
 
 .signup-Form_Error
-  error()
+  error-md()
 
 .signup-Form_Submmit
   margin-top 12px
 
-  btn('notice')
+  &:not([disabled])
+    btn('notice')
+
+  &[disabled]
+    btn('disabled')
+
+    cursor not-allowed
 
 .signup-Form_SignUp
   margin-top 12px
