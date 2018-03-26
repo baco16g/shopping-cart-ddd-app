@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react'
 import { compose, pure, type HOC } from 'recompose'
 import connector from '~/presentation/views/modules/cart/hocs/connector'
+import Loading from '~/presentation/views/_core/atoms/Loading'
 import CartItem from '~/presentation/views/modules/cart/molecules/CartItem'
 import PaymentNav from '~/presentation/views/modules/cart/molecules/PaymentNav'
 import TotalAmount from '~/presentation/views/modules/cart/molecules/TotalAmount'
@@ -21,7 +22,7 @@ export default enhancer(({ actions, commonVM, productsVM, cartVM }) => {
   return (
     <Fragment>
       {isFetching ? (
-        'Loading'
+        <Loading />
       ) : (
         <div className="crt-Container">
           {cartItems.size > 0 ? (

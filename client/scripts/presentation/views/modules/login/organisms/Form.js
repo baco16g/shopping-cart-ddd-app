@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import { compose, pure, withHandlers, type HOC } from 'recompose'
 import connector from '~/presentation/views/modules/login/hocs/connector'
 import submitHandler from '~/presentation/views/modules/login/hocs/withHandlers/submit'
+import Loading from '~/presentation/views/_core/atoms/Loading'
 import renderInputField from '~/presentation/views/_core/atoms/renderInputField'
 import * as valid from '~/presentation/views/utils/validation'
 
@@ -23,7 +24,7 @@ export default enhancer(
     return (
       <Fragment>
         {isFetching ? (
-          ''
+          <Loading />
         ) : (
           <div className="login-Container">
             <div className="login-Container_Inner">

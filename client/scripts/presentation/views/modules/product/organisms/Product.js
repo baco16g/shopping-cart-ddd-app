@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react'
 import { compose, pure, type HOC } from 'recompose'
 import connector from '~/presentation/views/modules/product/hocs/connector'
+import Loading from '~/presentation/views/_core/atoms/Loading'
 import ProductDetails from '~/presentation/views/modules/product/molecules/ProductDetails'
 import ProductThumb from '~/presentation/views/modules/product/molecules/ProductThumb'
 import ProductSale from '~/presentation/views/modules/product/molecules/ProductSale'
@@ -19,7 +20,7 @@ export default enhancer(({ actions, commonVM, productsVM, cartVM }) => {
   return (
     <Fragment>
       {isFetching || !productVM ? (
-        ''
+        <Loading />
       ) : (
         <div className="prdct-Container">
           <Fragment>
