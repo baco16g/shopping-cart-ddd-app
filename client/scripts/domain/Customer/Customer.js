@@ -3,9 +3,10 @@ import Entity from '~/domain/Entity'
 
 const props = (def: any): CustomerSchema => {
   return {
-    customerID: '',
+    customerId: '',
     email: '',
-    token: '',
+    volumeInfo: null,
+
     ...def
   }
 }
@@ -20,27 +21,31 @@ const CustomerModel = (def?: any) =>
      * Getter
      **********************/
     getCustomerID(): string {
-      return this.get('customerID')
+      return this.get('customerId')
     }
     getEmail(): string {
       return this.get('email')
     }
-    getToken(): string {
-      return this.get('token')
+    getVolumeInfo(): CustomerVolumeInfo {
+      return this.get('volumeInfo')
+    }
+    getPaymentInfo(): CustomerPaymentInfo {
+      return this.get('paymentInfo')
     }
     exist(): boolean {
-      return this.getCustomerID() !== ''
+      return this.getCustomerID() !== '' && this.getEmail() !== ''
     }
 
     /**********************
      * Setter
      **********************/
-    setCustomer({ customerId, email, token }): CustomerModel {
+    setCustomer({ customerId, email, volumeInfo, paymentInfo }): CustomerModel {
       return this.withMutations(m =>
         m
           .set('customerID', customerId)
           .set('email', email)
-          .set('token', token)
+          .set('volumeInfo', volumeInfo)
+          .set('paymentInfo', paymentInfo)
       )
     }
   }
