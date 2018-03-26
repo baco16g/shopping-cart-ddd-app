@@ -3,6 +3,7 @@ import ValueObject from '~/domain/ValueObject'
 
 const props = (def: any): CustomerPaymentInfoSchema => {
   return {
+    contractName: '',
     cardNumber: '',
     expiryMonth: '',
     expiryYear: '',
@@ -16,6 +17,7 @@ const CustomerPaymentInfo = (def?: any) =>
       super()
       return this.withMutations(m =>
         m
+          .set('contractName', args.contractName)
           .set('cardNumber', args.cardNumber)
           .set('expiryMonth', args.expiryMonth)
           .set('expiryYear', args.expiryYear)
@@ -24,7 +26,10 @@ const CustomerPaymentInfo = (def?: any) =>
     /**********************
      * Getter
      **********************/
-    getPrice(): string {
+    getContractName(): string {
+      return this.get('contractName')
+    }
+    getCardNumber(): string {
       return this.get('cardNumber')
     }
     getExpiryMonth(): string {

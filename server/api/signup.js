@@ -26,12 +26,14 @@ module.exports = (req, res) => {
     password,
     first_name,
     last_name,
+    contract_name,
     card_number,
     expiry_month,
     expiry_year
   } = req.body
   const volume_info = { first_name, last_name }
   const payment_info = {
+    contract_name,
     card_number,
     expiry_month,
     expiry_year

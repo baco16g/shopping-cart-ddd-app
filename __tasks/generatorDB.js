@@ -68,6 +68,7 @@ const adminUserList = [
       last_name: 'user'
     },
     payment_info: {
+      contract_name: 'ADMIN USER',
       card_number: '4111222233334444',
       expiry_month: '1',
       expiry_year: '2020'

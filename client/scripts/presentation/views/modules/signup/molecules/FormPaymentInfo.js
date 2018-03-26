@@ -29,6 +29,18 @@ export default function FormPaymentInfo({ commonVM }: Props) {
       <div className="signup-Form_Row">
         <div className="signup-Form_Group">
           <Field
+            label="Contract Name"
+            name="contractName"
+            type="text"
+            component={renderInputField}
+            validate={[valid.required, valid.alphaNumeric]}
+            normalize={value => value.toUpperCase()}
+          />
+        </div>
+      </div>
+      <div className="signup-Form_Row">
+        <div className="signup-Form_Group">
+          <Field
             name="expiryMonth"
             label="Expiry Month"
             component={renderSelectField}
