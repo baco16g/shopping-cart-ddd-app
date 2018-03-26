@@ -17,38 +17,96 @@ import API_FUNC from '~/adapter/processAdapter/services/constants/API_FUNC'
 /**********************************
  * services
  *********************************/
-function* fetchCustomer(): * {
+function* requestCustomer(): * {
   const token: string = yield call(loadLocalStorageByKey, 'token')
+  if (!token) return false
+  yield call(fetchCustomer, token, 'fetchCustomer')
+}
 
-  if (token) {
-    yield put(commonCreators.pushFetchingQueue({ eventkey: 'fetchCustomer' }))
-    const reqHeaders = {
-      headers: {
-        authorization: `Bearer ${token}`
-      }
+function* fetchCustomer(eventKey: string, token: string): * {
+  yield put(commonCreators.pushFetchingQueue({ eventkey: eventKey }))
+  const reqHeaders = {
+    headers: {
+      authorization: `Bearer ${token}`
     }
-    const { payload, err } = yield call(
-      API_FUNC.GET.CUSTOMER,
-      decamelizeKeys(reqHeaders)
-    )
-    yield put(commonCreators.deleteFetchingQueue({ eventkey: 'fetchCustomer' }))
+  }
+  const { payload, err } = yield call(
+    API_FUNC.GET.CUSTOMER,
+    decamelizeKeys(reqHeaders)
+  )
+  yield put(commonCreators.deleteFetchingQueue({ eventkey: eventKey }))
 
-    if (!payload && err) throw new Error('システムエラーが発生しました。')
+  if (!payload && err) throw new Error('システムエラーが発生しました。')
 
-    const status = payload['data']['status']
-    switch (status) {
-      case 0:
-        yield put(
-          customerCreators.setCustomer({
-            ...camelizeKeys(payload['data']['user'])
-          })
-        )
-        break
-      case -2:
-        break
-      default:
-        throw new Error('該当するステータスコードが存在しません')
-    }
+  const status = payload['data']['status']
+  switch (status) {
+    case 0:
+      yield put(
+        customerCreators.setCustomer({
+          ...camelizeKeys(payload['data']['user'])
+        })
+      )
+      return true
+    case -2:
+      return true
+    default:
+      alert('該当するステータスコードが存在しません')
+      return false
+  }
+}
+
+function* login(eventKey: string, reqData: *): * {
+  yield put(commonCreators.pushFetchingQueue({ eventkey: eventKey }))
+  const { payload, err } = yield call(
+    API_FUNC.POST.LOGIN,
+    decamelizeKeys(reqData)
+  )
+  yield put(commonCreators.deleteFetchingQueue({ eventkey: eventKey }))
+
+  if (!payload && err) throw new Error('システムエラーが発生しました。')
+
+  const status = payload['data']['status']
+  switch (status) {
+    case 0:
+      saveLocalStorageByKey(payload['data']['token'], 'token')
+      yield put(
+        customerCreators.setCustomer({
+          ...camelizeKeys(payload['data']['user'])
+        })
+      )
+      location.href = '/'
+      return true
+    case -2:
+      yield put(stopSubmit('login', { _error: payload['data']['message'] }))
+      return false
+    default:
+      alert('該当するステータスコードが存在しません')
+      return false
+  }
+}
+
+function* signup(eventKey: string, reqData: *): * {
+  yield put(commonCreators.pushFetchingQueue({ eventkey: eventKey }))
+  const { payload, err } = yield call(
+    API_FUNC.POST.SIGNUP,
+    decamelizeKeys(reqData)
+  )
+  yield put(commonCreators.deleteFetchingQueue({ eventkey: eventKey }))
+
+  if (!payload && err) throw new Error('システムエラーが発生しました。')
+
+  const status = payload['data']['status']
+  switch (status) {
+    case 0:
+      alert(payload['data']['message'])
+      location.href = '/login/'
+      return true
+    case -2:
+      yield put(stopSubmit('signup', { _error: payload['data']['message'] }))
+      return false
+    default:
+      alert('該当するステータスコードが存在しません')
+      return false
   }
 }
 
@@ -58,33 +116,8 @@ function* fetchCustomer(): * {
 function* subscribeToRequestLogin(): * {
   while (true) {
     const { payload: reqData } = yield take(CustomerTypes.requestLogin)
-    yield put(commonCreators.pushFetchingQueue({ eventkey: 'requestLogin' }))
-    const { payload, err } = yield call(
-      API_FUNC.POST.LOGIN,
-      decamelizeKeys(reqData)
-    )
-
-    if (!payload && err) throw new Error('システムエラーが発生しました。')
-
-    yield put(commonCreators.deleteFetchingQueue({ eventkey: 'requestLogin' }))
-
-    const status = payload['data']['status']
-    switch (status) {
-      case 0:
-        saveLocalStorageByKey(payload['data']['token'], 'token')
-        yield put(
-          customerCreators.setCustomer({
-            ...camelizeKeys(payload['data']['user'])
-          })
-        )
-        location.href = '/'
-        break
-      case -2:
-        yield put(stopSubmit('login', { _error: payload['data']['message'] }))
-        continue
-      default:
-        throw new Error('該当するステータスコードが存在しません')
-    }
+    const isCompleted: boolean = yield call(login, 'requestLogin', reqData)
+    if (!isCompleted) continue
   }
 }
 
@@ -99,33 +132,13 @@ function* subscribeToRequestLogout(): * {
 function* subscribeToRequestSignup(): * {
   while (true) {
     const { payload: reqData } = yield take(CustomerTypes.requestSignup)
-    yield put(commonCreators.pushFetchingQueue({ eventkey: 'requestSignup' }))
-    const { payload, err } = yield call(
-      API_FUNC.POST.SIGNUP,
-      decamelizeKeys(reqData)
-    )
-
-    if (!payload && err) throw new Error('システムエラーが発生しました。')
-
-    yield put(commonCreators.deleteFetchingQueue({ eventkey: 'requestSignup' }))
-
-    const status = payload['data']['status']
-    switch (status) {
-      case 0:
-        alert(payload['data']['message'])
-        location.href = '/login/'
-        break
-      case -2:
-        yield put(stopSubmit('signup', { _error: payload['data']['message'] }))
-        continue
-      default:
-        throw new Error('該当するステータスコードが存在しません')
-    }
+    const isCompleted: boolean = yield call(signup, 'requestSignup', reqData)
+    if (!isCompleted) continue
   }
 }
 
 export default function*(): * {
-  yield fork(fetchCustomer)
+  yield fork(requestCustomer)
   yield fork(subscribeToRequestLogin)
   yield fork(subscribeToRequestLogout)
   yield fork(subscribeToRequestSignup)
