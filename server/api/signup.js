@@ -21,12 +21,17 @@ const userExist = ({ email }) => {
  ***********************/
 module.exports = (req, res) => {
   const { email } = req.body
-  const exist = userExist({ email })
-
-  if (exist) {
-    res.status(200).json({ status: -2, message: 'User already exists.' })
+  if (db.hasOwnProperty('users') && db.users.hasOwnProperty('email')) {
+    const exist = userExist({ email })
+    if (exist) {
+      res.status(200).json({ status: -2, message: 'User already exists.' })
+    } else {
+      db.users.push(req.body)
+      fs.writeFileSync(dbPath, JSON.stringify(db))
+      res.status(200).json({ status: 0, message: 'completed!' })
+    }
   } else {
-    db.users.push(req.body)
+    db.users = [req.body]
     fs.writeFileSync(dbPath, JSON.stringify(db))
     res.status(200).json({ status: 0, message: 'completed!' })
   }
