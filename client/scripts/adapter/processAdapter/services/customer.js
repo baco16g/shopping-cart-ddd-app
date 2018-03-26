@@ -7,6 +7,7 @@ import {
   saveLocalStorageByKey,
   deleteLocalStorageByKey
 } from '~/adapter/processAdapter/services/utils/storage'
+import { creators as commonCreators } from '~/port/redux/common'
 import {
   creators as customerCreators,
   types as CustomerTypes
@@ -20,6 +21,7 @@ function* fetchCustomer(): * {
   const token: string = yield call(loadLocalStorageByKey, 'token')
 
   if (token) {
+    yield put(commonCreators.pushFetchingQueue({ eventkey: 'fetchCustomer' }))
     const reqHeaders = {
       headers: {
         authorization: `Bearer ${token}`
@@ -29,6 +31,7 @@ function* fetchCustomer(): * {
       API_FUNC.GET.CUSTOMER,
       decamelizeKeys(reqHeaders)
     )
+    yield put(commonCreators.deleteFetchingQueue({ eventkey: 'fetchCustomer' }))
 
     if (!payload && err) throw new Error('システムエラーが発生しました。')
 
@@ -42,7 +45,6 @@ function* fetchCustomer(): * {
         )
         break
       case -2:
-        console.log(err)
         break
       default:
         throw new Error('該当するステータスコードが存在しません')
@@ -56,12 +58,15 @@ function* fetchCustomer(): * {
 function* subscribeToRequestLogin(): * {
   while (true) {
     const { payload: reqData } = yield take(CustomerTypes.requestLogin)
+    yield put(commonCreators.pushFetchingQueue({ eventkey: 'requestLogin' }))
     const { payload, err } = yield call(
       API_FUNC.POST.LOGIN,
       decamelizeKeys(reqData)
     )
 
     if (!payload && err) throw new Error('システムエラーが発生しました。')
+
+    yield put(commonCreators.deleteFetchingQueue({ eventkey: 'requestLogin' }))
 
     const status = payload['data']['status']
     switch (status) {
@@ -94,12 +99,15 @@ function* subscribeToRequestLogout(): * {
 function* subscribeToRequestSignup(): * {
   while (true) {
     const { payload: reqData } = yield take(CustomerTypes.requestSignup)
+    yield put(commonCreators.pushFetchingQueue({ eventkey: 'requestSignup' }))
     const { payload, err } = yield call(
       API_FUNC.POST.SIGNUP,
       decamelizeKeys(reqData)
     )
 
     if (!payload && err) throw new Error('システムエラーが発生しました。')
+
+    yield put(commonCreators.deleteFetchingQueue({ eventkey: 'requestSignup' }))
 
     const status = payload['data']['status']
     switch (status) {
