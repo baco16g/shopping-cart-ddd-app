@@ -49,7 +49,7 @@ const list = () =>
         category: faker.lorem.slug()
       },
       sale_info: {
-        amount: faker.commerce.price(),
+        price: faker.commerce.price(),
         currency_code: 'JPY'
       },
       stock_info: {
