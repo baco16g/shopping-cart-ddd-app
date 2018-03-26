@@ -20,7 +20,7 @@ import API_FUNC from '~/adapter/processAdapter/services/constants/API_FUNC'
 function* requestCustomer(): * {
   const token: string = yield call(loadLocalStorageByKey, 'token')
   if (!token) return false
-  yield call(fetchCustomer, token, 'fetchCustomer')
+  yield call(fetchCustomer, 'fetchCustomer', token)
 }
 
 function* fetchCustomer(eventKey: string, token: string): * {
