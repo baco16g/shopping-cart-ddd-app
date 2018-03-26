@@ -36,7 +36,7 @@ const saveThumb = (url, productCode, ouputPath) => {
   })
 }
 
-const list = () =>
+const productList = () =>
   new Array(MAX_LENGTH).fill(0).map(() => {
     const productCode = faker.random.uuid()
     const thumbUrl = `https://loremflickr.com/680/480?${faker.random.number()}`
@@ -58,10 +58,28 @@ const list = () =>
     }
   })
 
+const adminUserList = [
+  {
+    customer_id: 'admin',
+    email: 'admin@gmail.com',
+    password: 'admin',
+    volume_info: {
+      first_name: 'admin',
+      last_name: 'user'
+    },
+    payment_info: {
+      card_number: '4111222233334444',
+      expiry_month: '1',
+      expiry_year: '2020'
+    }
+  }
+]
+
 fs.open(dbPath, 'r', (err, data) => {
   const db = JSON.parse(data)
   const json = Object.assign({}, db, {
-    products: list()
+    products: productList(),
+    users: adminUserList
   })
   console.log(JSON.stringify(json))
 })
