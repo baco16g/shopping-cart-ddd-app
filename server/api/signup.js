@@ -21,7 +21,6 @@ const userExist = (db, { email }) => {
  ***********************/
 module.exports = (req, res) => {
   const {
-    customer_id,
     email,
     password,
     first_name,
@@ -38,7 +37,7 @@ module.exports = (req, res) => {
     expiry_month,
     expiry_year
   }
-  const user = { customer_id, email, password, payment_info, volume_info }
+  const user = { email, password, payment_info, volume_info }
 
   const db = getDB()
   if (db.hasOwnProperty('users')) {

@@ -3,10 +3,10 @@
 const API_URL = {
   GET: {
     PRODUCTS: '/api/products',
-    CUSTOMER: '/api/customer'
+    CUSTOMER: '/api/auth'
   },
   POST: {
-    LOGIN: '/api/login',
+    LOGIN: '/api/auth/login',
     SIGNUP: '/api/signup'
   }
 }
