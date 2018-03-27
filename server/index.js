@@ -13,7 +13,7 @@ const renderPugAsHtml = require(path.join(
 ))
 const login = require(path.join(PATH.SERVER, '/api/login'))
 const signup = require(path.join(PATH.SERVER, '/api/signup'))
-const fetchCustomer = require(path.join(PATH.SERVER, '/api/fetchCustomer'))
+const auth = require(path.join(PATH.SERVER, '/api/auth'))
 
 router.render = (req, res) => {
   console.log(res)
@@ -25,7 +25,7 @@ server
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
   .use(renderPugAsHtml)
-  .get('/api/auth', fetchCustomer)
+  .get('/api/auth', auth)
   .post('/api/auth/login', login)
   .post('/api/signup', signup)
   .use('/api', router)
