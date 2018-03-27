@@ -1,0 +1,75 @@
+.pymnt-Container
+  margin 0 auto
+  max-width 600px
+
+  card()
+
+.pymnt-Section
+  padding 24px
+
+.pymnt-Section_Hdg
+  margin-bottom: 12px;
+  padding: 6px 6px 6px 12px;
+  border-left: solid 6px #e74c3c;
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 21px;
+
+.pymnt-Cart_Item
+  display flex
+  align-items center
+  padding 12px 0
+
+  &:not(:first-child)
+    border-top dashed 1px $gray
+
+.pymnt-Cart_Item_thumb
+  width 20%
+
+.pymnt-Cart_Item_stock
+  width 10%
+  text-align center
+
+.pymnt-Cart_Item_name
+  width 45%
+  padding 0 12px
+  color $black
+  word-break break-all
+  font-size 15px
+  line-height 1.5
+
+.pymnt-Cart_Item_price
+  width 25%
+  padding 0 12px
+  color $notice
+  font-weight bold
+  font-size 18px
+
+.pymnt-CartItems_TotalAmount
+  padding 12px
+  border-top dashed 2px $notice
+  border-bottom solid 2px $notice
+  color $notice
+  text-align right
+  font-weight bold
+  font-size 24px
+
+.pymnt-Card_Item
+  display flex
+  justify-content center
+  padding 9px
+
+.pymnt-Card_Item_hdg
+  width 30%
+  font-size 12px
+
+  &:after
+    content ':'
+
+.pymnt-Card_Item_txt
+  width 70%
+  font-size 15px
+  font-weight bold
+
+.pymnt-Checkout_Button
+  btn('notice')

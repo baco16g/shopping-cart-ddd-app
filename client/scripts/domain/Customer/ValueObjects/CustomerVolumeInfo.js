@@ -27,7 +27,7 @@ const CustomerVolumeInfo = (def?: any) =>
       return this.get('lastName')
     }
     getFullName(): string {
-      return `${this.getFirstName()} ${this.getFullName()}`
+      return `${this.getFirstName()} ${this.getLastName()}`
     }
   }
 
