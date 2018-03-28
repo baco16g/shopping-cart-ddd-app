@@ -54,7 +54,8 @@ const productList = () =>
       },
       stock_info: {
         quantity: parseInt(generateRandomString(10, 1))
-      }
+      },
+      created_at: new Date()
     }
   })
 
@@ -72,7 +73,25 @@ const adminUserList = [
       card_number: '4111222233334444',
       expiry_month: '1',
       expiry_year: '2020'
-    }
+    },
+    created_at: new Date()
+  }
+]
+
+const orderList = [
+  {
+    customer_id: 'admin',
+    order: [
+      {
+        items: [
+          {
+            product_code: '',
+            quantity: ''
+          }
+        ],
+        created_at: new Date()
+      }
+    ]
   }
 ]
 
@@ -80,7 +99,8 @@ fs.open(dbPath, 'r', (err, data) => {
   const db = JSON.parse(data)
   const json = Object.assign({}, db, {
     products: productList(),
-    users: adminUserList
+    users: adminUserList,
+    orderList: orderList
   })
   console.log(JSON.stringify(json))
 })

@@ -89,7 +89,7 @@ function* signup(eventKey: string, reqData: *): * {
   yield put(commonCreators.pushFetchingQueue({ eventkey: eventKey }))
   const { payload, err } = yield call(
     API_FUNC.POST.SIGNUP,
-    decamelizeKeys(reqData)
+    decamelizeKeys(Object.assing({}, reqData, { createdAt: new Date()}))
   )
   yield put(commonCreators.deleteFetchingQueue({ eventkey: eventKey }))
 

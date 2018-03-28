@@ -57,7 +57,9 @@ const ProductsModel = (def?: any) =>
     pushProduct({ product }: { product: ProductSchema }): ProductsModel {
       if (!product.productCode) return this
       return this.update('list', list =>
-        list.push(ProductFactory.create(product))
+        list.push(
+          ProductFactory.create(product).restoreCreatedAt(product.createdAt)
+        )
       )
     }
   }
