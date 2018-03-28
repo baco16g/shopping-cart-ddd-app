@@ -24,8 +24,8 @@ import CommonViewModel from '~/domain/Common/CommonView'
 import CustomerViewModel from '~/domain/Customer/CustomerView'
 
 // Sagas
-import commonSaga from '~/adapter/processAdapter/services/common'
-import customerSaga from '~/adapter/processAdapter/services/customer'
+import commonSaga from '~/adapter/processAdapter/services/commonService'
+import authSaga from '~/adapter/processAdapter/services/auth'
 
 // Main
 const rootReducer = extendReducers({
@@ -54,4 +54,4 @@ const MainViewAdaptedStore = () => {
 
 renderViews('data-react-header-app', HeaderViewAdaptedStore)
 renderViews('data-react-signup-app', MainViewAdaptedStore)
-runRootSaga(sagaMiddleware)([commonSaga, customerSaga])
+runRootSaga(sagaMiddleware)([commonSaga, authSaga])

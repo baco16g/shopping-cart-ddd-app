@@ -5,6 +5,6 @@ type OuterProps = {
 }
 
 export default ({ actions }: OuterProps) => () => {
-  // user
+  actions.requestCheckout()
   // product
 }

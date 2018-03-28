@@ -16,23 +16,24 @@ import ReactProductsView from '~/presentation/views/modules/products'
 
 // Reducers
 import { reducer as CommonReducer } from '~/port/redux/common'
-import { reducer as ProductsReducer } from '~/port/redux/packages/products'
 import { reducer as CustomerReducer } from '~/port/redux/packages/customer'
+import { reducer as ProductsReducer } from '~/port/redux/packages/products'
 
 // ViewModels
 import CommonViewModel from '~/domain/Common/CommonView'
-import ProductsViewModel from '~/domain/Products/ProductsView'
 import CustomerViewModel from '~/domain/Customer/CustomerView'
+import ProductsViewModel from '~/domain/Products/ProductsView'
 
 // Sagas
-import productsSaga from '~/adapter/processAdapter/services/products'
-import customerSaga from '~/adapter/processAdapter/services/customer'
+import commonSaga from '~/adapter/processAdapter/services/commonService'
+import authSaga from '~/adapter/processAdapter/services/auth'
+import setProductsSaga from '~/adapter/processAdapter/services/setProducts'
 
 // Main
 const rootReducer = extendReducers({
   commonVM: CommonReducer(new CommonViewModel()),
-  productsVM: ProductsReducer(new ProductsViewModel()),
-  customerVM: CustomerReducer(new CustomerViewModel())
+  customerVM: CustomerReducer(new CustomerViewModel()),
+  productsVM: ProductsReducer(new ProductsViewModel())
 })
 
 const store = configureStore(rootReducer)
@@ -55,4 +56,4 @@ const MainViewAdaptedStore = () => {
 
 renderViews('data-react-header-app', HeaderViewAdaptedStore)
 renderViews('data-react-products-app', MainViewAdaptedStore)
-runRootSaga(sagaMiddleware)([productsSaga, customerSaga])
+runRootSaga(sagaMiddleware)([commonSaga, authSaga, setProductsSaga])

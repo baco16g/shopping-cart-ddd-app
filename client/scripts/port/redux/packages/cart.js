@@ -11,8 +11,10 @@ const { types, creators, reducer } = createActionReducer(
     'increaseQuantityOfCartItem',
     'updateQuantityOfCartItem',
     'goToPayment',
+    'requestCheckout',
     'restoreFailed',
-    'saveCartItems'
+    'saveCartItems',
+    'resetCartItems'
   ],
   '/cart/'
 )

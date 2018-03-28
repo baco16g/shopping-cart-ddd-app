@@ -16,28 +16,29 @@ import ReactPaymentView from '~/presentation/views/modules/payment'
 
 // Reducers
 import { reducer as CommonReducer } from '~/port/redux/common'
+import { reducer as CustomerReducer } from '~/port/redux/packages/customer'
 import { reducer as ProductsReducer } from '~/port/redux/packages/products'
 import { reducer as CartReducer } from '~/port/redux/packages/cart'
-import { reducer as CustomerReducer } from '~/port/redux/packages/customer'
 
 // ViewModels
 import CommonViewModel from '~/domain/Common/CommonView'
+import CustomerViewModel from '~/domain/Customer/CustomerView'
 import ProductsViewModel from '~/domain/Products/ProductsView'
 import CartViewModel from '~/domain/Cart/CartView'
-import CustomerViewModel from '~/domain/Customer/CustomerView'
 
 // Sagas
-import commonSaga from '~/adapter/processAdapter/services/common'
-import productsSaga from '~/adapter/processAdapter/services/products'
-import cartSaga from '~/adapter/processAdapter/services/cart'
-import customerSaga from '~/adapter/processAdapter/services/customer'
+import commonSaga from '~/adapter/processAdapter/services/commonService'
+import authSaga from '~/adapter/processAdapter/services/auth'
+import setProductsSaga from '~/adapter/processAdapter/services/setProducts'
+import manipulateCartSaga from '~/adapter/processAdapter/services/manipulateCart'
+import checkoutSaga from '~/adapter/processAdapter/services/checkout'
 
 // Main
 const rootReducer = extendReducers({
   commonVM: CommonReducer(new CommonViewModel()),
+  customerVM: CustomerReducer(new CustomerViewModel()),
   productsVM: ProductsReducer(new ProductsViewModel()),
-  cartVM: CartReducer(new CartViewModel()),
-  customerVM: CustomerReducer(new CustomerViewModel())
+  cartVM: CartReducer(new CartViewModel())
 })
 
 const store = configureStore(rootReducer)
@@ -60,4 +61,10 @@ const MainViewAdaptedStore = () => {
 
 renderViews('data-react-header-app', HeaderViewAdaptedStore)
 renderViews('data-react-payment-app', MainViewAdaptedStore)
-runRootSaga(sagaMiddleware)([commonSaga, productsSaga, cartSaga, customerSaga])
+runRootSaga(sagaMiddleware)([
+  commonSaga,
+  authSaga,
+  setProductsSaga,
+  manipulateCartSaga,
+  checkoutSaga
+])
