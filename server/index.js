@@ -15,6 +15,7 @@ const login = require(path.join(PATH.SERVER, '/api/login'))
 const signup = require(path.join(PATH.SERVER, '/api/signup'))
 const auth = require(path.join(PATH.SERVER, '/api/auth'))
 const updateStock = require(path.join(PATH.SERVER, '/api/updateStock'))
+const postOrder = require(path.join(PATH.SERVER, '/api/postOrder'))
 
 server
   .use(defaultMiddlewares)
@@ -24,6 +25,7 @@ server
   .get('/api/auth', auth)
   .post('/api/auth/login', login)
   .post('/api/signup', signup)
+  .post('/api/order', postOrder)
   .patch('/api/product/updateStock', updateStock)
   .use('/api', router)
   .listen(PORT, () => {

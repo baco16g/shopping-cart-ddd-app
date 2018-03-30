@@ -34,7 +34,39 @@ function* reduceStock(eventKey: string): * {
     case 0:
       break
     case -2:
-      break
+      alert(payload['data']['message'])
+      return false
+    default:
+      alert('該当するステータスコードが存在しません')
+      return false
+  }
+}
+
+function* saveOrder(eventKey: string): * {
+  yield put(commonCreators.pushFetchingQueue({ eventkey: eventKey }))
+  const cartVM = yield select(state => state.cartVM)
+  const customerVM = yield select(state => state.customerVM)
+  const reqData = {
+    customerId: customerVM.getCustomerID(),
+    items: cartVM.getCartItemsJS(),
+    createdAt: new Date()
+  }
+  const { payload, err } = yield call(
+    API_FUNC.POST.ORDER,
+    decamelizeKeys(reqData)
+  )
+  yield put(commonCreators.deleteFetchingQueue({ eventkey: eventKey }))
+
+  if (!payload && err) throw new Error('システムエラーが発生しました。')
+
+  const status = payload['data']['status']
+  switch (status) {
+    case 0:
+      alert(payload['data']['message'])
+      return true
+    case -2:
+      alert(payload['data']['message'])
+      return false
     default:
       alert('該当するステータスコードが存在しません')
       return false
@@ -49,6 +81,7 @@ function* subscribeToRequestCheckout(): * {
     yield take(CartTypes.requestCheckout)
     yield call(reduceStock, 'requestCheckout')
     yield fork(resetCartItems)
+    yield fork(saveOrder)
   }
 }
 

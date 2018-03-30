@@ -7,7 +7,8 @@ const API_URL = {
   },
   POST: {
     LOGIN: '/api/auth/login',
-    SIGNUP: '/api/signup'
+    SIGNUP: '/api/signup',
+    ORDER: '/api/order'
   },
   PATCH: {
     PRODUCT_STOCK: '/api/product/updateStock'
