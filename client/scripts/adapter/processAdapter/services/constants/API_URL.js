@@ -3,7 +3,8 @@
 const API_URL = {
   GET: {
     PRODUCTS: '/api/products',
-    CUSTOMER: '/api/auth'
+    CUSTOMER: '/api/auth',
+    ORDER: '/api/order'
   },
   POST: {
     LOGIN: '/api/auth/login',

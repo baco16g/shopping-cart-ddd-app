@@ -10,7 +10,8 @@ import postOrder from '~/adapter/processAdapter/services/constants/api/postOrder
 const API_FUNC = {
   GET: {
     PRODUCTS: getProducts,
-    CUSTOMER: fetchCustoemr
+    CUSTOMER: fetchCustoemr,
+    ORDER: fetchOrder
   },
   POST: {
     LOGIN: login,
