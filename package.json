@@ -24,8 +24,10 @@
     "build:css:dev": "stylus ./client/stylus/common.styl --out ./public/assets/styles/common.css --use autoprefixer-stylus --watch",
     "build:css:prod": "stylus ./client/stylus/common.styl --out ./public/assets/styles/common.css --use autoprefixer-stylus --compress",
     "build:html:prod": "pug ./client/templates --basedir ./client/templates/ --pretty --out ./public/",
-    "generate:db": "node ./__tasks/generatorDB.js > ./server/db/index.json",
+    "generate:db": "touch ./server/db/index.json",
+    "update:db": "node ./__tasks/generatorDB.js > ./server/db/index.json",
     "sync": "rsync -auvz --delete --ignore-times --checksum --exclude='.*' ./public/ ./htdocs/",
+    "init:db": "run-s generate:db update:db",
     "preview": "run-s del mkdir build:*:prod",
     "release": "run-s del mkdir build:*:prod sync"
   },
