@@ -17,7 +17,7 @@ function* resetCartItems(): * {
   yield put(cartCreators.resetCartItems({}))
 }
 
-function* updateStock(eventKey: string): * {
+function* reduceStock(eventKey: string): * {
   yield put(commonCreators.pushFetchingQueue({ eventkey: eventKey }))
   const cartVM = yield select(state => state.cartVM)
   const reqData = cartVM.toJS()
@@ -47,7 +47,7 @@ function* updateStock(eventKey: string): * {
 function* subscribeToRequestCheckout(): * {
   while (true) {
     yield take(CartTypes.requestCheckout)
-    yield call(updateStock, 'requestCheckout')
+    yield call(reduceStock, 'requestCheckout')
     yield fork(resetCartItems)
   }
 }
