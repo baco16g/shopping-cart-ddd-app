@@ -100,7 +100,7 @@ fs.open(dbPath, 'r', (err, data) => {
   const json = Object.assign({}, db, {
     products: productList(),
     users: adminUserList,
-    orderList: orderList
+    order_list: orderList
   })
   console.log(JSON.stringify(json))
 })
