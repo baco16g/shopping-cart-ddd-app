@@ -14,9 +14,9 @@ const getDB = () => JSON.parse(fs.readFileSync(dbPath), 'UTF-8')
 /***********************
  * Private Function
  ***********************/
-const findUser = (db, { email, password }) => {
-  return db.users.find(
-    user => user.email === email && user.password === password
+const findCustomer = (db, { email, password }) => {
+  return db.customers.find(
+    customer => customer.email === email && customer.password === password
   )
 }
 
@@ -30,9 +30,9 @@ module.exports = (req, res) => {
     if (!decode || err) {
       res.status(400).json({ status: -1, message: err })
     } else {
-      const user = findUser(db, decode)
-      if (user) {
-        res.status(200).json({ status: 0, user })
+      const customer = findCustomer(db, decode)
+      if (customer) {
+        res.status(200).json({ status: 0, customer })
       } else {
         res.status(200).json({ status: -2, message: 'User is not found' })
       }

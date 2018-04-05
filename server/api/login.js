@@ -18,20 +18,20 @@ const createToken = payload => {
   return jwt.sign(payload, AUTH.SECRET_KEY)
 }
 
-const getUserIndex = (db, { email, password }) => {
-  return db.users.findIndex(
-    user => user.email === email && user.password === password
+const getCustomerIndex = (db, { email, password }) => {
+  return db.customers.findIndex(
+    customers => customers.email === email && customers.password === password
   )
 }
 
-const getUser = (db, { email, password }) => {
-  return db.users.find(
-    user => user.email === email && user.password === password
+const getCustomer = (db, { email, password }) => {
+  return db.customers.find(
+    customers => customers.email === email && customers.password === password
   )
 }
 
 const isAuth = (db, { email, password }) =>
-  getUserIndex(db, { email, password }) !== -1
+  getCustomerIndex(db, { email, password }) !== -1
 
 /***********************
  * Main Module
@@ -44,9 +44,9 @@ module.exports = (req, res) => {
     const message = 'Incorrect email or password'
     res.status(200).json({ status: -2, message })
   } else {
-    const user = getUser(db, { email, password })
+    const customers = getCustomer(db, { email, password })
     const token = createToken({ email, password })
-    const payload = Object.assign({}, { user }, { status: 0, token })
+    const payload = Object.assign({}, { customers }, { status: 0, token })
     res.status(200).json(payload)
   }
 }

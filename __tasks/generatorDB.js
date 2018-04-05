@@ -59,7 +59,7 @@ const productList = () =>
     }
   })
 
-const adminUserList = [
+const adminCustomerList = [
   {
     customer_id: 'admin',
     email: 'admin@gmail.com',
@@ -84,7 +84,7 @@ fs.open(dbPath, 'r', (err, data) => {
   const db = JSON.parse(data)
   const json = Object.assign({}, db, {
     products: productList(),
-    users: adminUserList,
+    customers: adminCustomerList,
     order: orderList
   })
   console.log(JSON.stringify(json))

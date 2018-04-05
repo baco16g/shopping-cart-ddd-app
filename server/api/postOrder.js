@@ -13,7 +13,7 @@ const getDB = () => JSON.parse(fs.readFileSync(dbPath), 'UTF-8')
  * Private Function
  ***********************/
 const customerExist = (db, { customer_id }) => {
-  return db['users'].find(user => user.customer_id === customer_id)
+  return db['customers'].find(customer => customer.customer_id === customer_id)
 }
 
 const findCustomerIndex = (db, { customer_id }) => {

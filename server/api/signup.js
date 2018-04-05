@@ -12,9 +12,9 @@ const getDB = () => JSON.parse(fs.readFileSync(dbPath), 'UTF-8')
 /***********************
  * Private Function
  ***********************/
-const userExist = (db, { customer_id, email }) => {
-  return db.users.find(
-    user => user.email === email || user.customer_id === customer_id
+const customerExist = (db, { customer_id, email }) => {
+  return db.customers.find(
+    customer => customer.email === email || customer.customer_id === customer_id
   )
 }
 
@@ -41,7 +41,7 @@ module.exports = (req, res) => {
     expiry_month,
     expiry_year
   }
-  const user = {
+  const customer = {
     customer_id,
     email,
     password,
@@ -51,17 +51,17 @@ module.exports = (req, res) => {
   }
 
   const db = getDB()
-  if (db.hasOwnProperty('users')) {
-    const exist = userExist(db, { customer_id, email })
+  if (db.hasOwnProperty('customers')) {
+    const exist = customerExist(db, { customer_id, email })
     if (exist) {
-      res.status(200).json({ status: -2, message: 'User already exists.' })
+      res.status(200).json({ status: -2, message: 'Customer already exists.' })
     } else {
-      db.users.push(user)
+      db.customers.push(customer)
       fs.writeFileSync(dbPath, JSON.stringify(db))
       res.status(200).json({ status: 0, message: 'completed!' })
     }
   } else {
-    db['users'] = [user]
+    db['customers'] = [customer]
     fs.writeFileSync(dbPath, JSON.stringify(db))
     res.status(200).json({ status: 0, message: 'completed!' })
   }

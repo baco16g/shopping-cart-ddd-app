@@ -43,7 +43,7 @@ function* fetchCustomer(eventKey: string, token: string): * {
     case 0:
       yield put(
         customerCreators.setCustomer({
-          ...camelizeKeys(payload['data']['user'])
+          ...camelizeKeys(payload['data']['customer'])
         })
       )
       return true
@@ -71,7 +71,7 @@ function* login(eventKey: string, reqData: *): * {
       saveLocalStorageByKey(payload['data']['token'], 'token')
       yield put(
         customerCreators.setCustomer({
-          ...camelizeKeys(payload['data']['user'])
+          ...camelizeKeys(payload['data']['customer'])
         })
       )
       location.href = '/'
