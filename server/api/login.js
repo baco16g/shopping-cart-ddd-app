@@ -2,6 +2,7 @@
 const path = require('path')
 const fs = require('fs')
 const jwt = require('jsonwebtoken')
+const repeat = require('lodash').repeat
 const PATH = require('../../config/path')
 const AUTH = require('../../config/auth')
 
@@ -29,6 +30,19 @@ const getCustomer = (db, { email, password }) => {
     customers => customers.email === email && customers.password === password
   )
 }
+const maskCardNumber = customer => {
+  const _cardNumber = customer['payment_info']['card_number']
+  const _prefix = _cardNumber.slice(0, 4)
+  const _suffix = repeat('*', _cardNumber.length - 4)
+  const _masked = _prefix + _suffix
+  return {
+    ...customer,
+    payment_info: {
+      ...customer.payment_info,
+      card_number: _masked
+    }
+  }
+}
 
 const isAuth = (db, { email, password }) =>
   getCustomerIndex(db, { email, password }) !== -1
@@ -44,9 +58,9 @@ module.exports = (req, res) => {
     const message = 'Incorrect email or password'
     res.status(200).json({ status: -2, message })
   } else {
-    const customers = getCustomer(db, { email, password })
+    const customer = maskCardNumber(getCustomer(db, { email, password }))
     const token = createToken({ email, password })
-    const payload = Object.assign({}, { customers }, { status: 0, token })
+    const payload = Object.assign({}, { customer }, { status: 0, token })
     res.status(200).json(payload)
   }
 }

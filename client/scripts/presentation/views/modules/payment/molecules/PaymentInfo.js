@@ -7,7 +7,7 @@ type Props = {
 
 export default function PaymentInfo({ customerVM }: Props) {
   const contractName = customerVM.getPaymentInfo().getContractName()
-  const cardNumber = customerVM.getHidedCardNumber()
+  const cardNumber = customerVM.getPaymentInfo().getCardNumber()
   const expiry = customerVM.getExpiry()
 
   return (

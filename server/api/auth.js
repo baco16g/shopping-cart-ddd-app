@@ -2,6 +2,7 @@
 const path = require('path')
 const fs = require('fs')
 const jwt = require('jsonwebtoken')
+const repeat = require('lodash').repeat
 const PATH = require('../../config/path')
 const AUTH = require('../../config/auth')
 
@@ -20,6 +21,20 @@ const findCustomer = (db, { email, password }) => {
   )
 }
 
+const maskCardNumber = customer => {
+  const _cardNumber = customer['payment_info']['card_number']
+  const _prefix = _cardNumber.slice(0, 4)
+  const _suffix = repeat('*', _cardNumber.length - 4)
+  const _masked = _prefix + _suffix
+  return {
+    ...customer,
+    payment_info: {
+      ...customer.payment_info,
+      card_number: _masked
+    }
+  }
+}
+
 /***********************
  * Main Module
  ***********************/
@@ -30,7 +45,7 @@ module.exports = (req, res) => {
     if (!decode || err) {
       res.status(400).json({ status: -1, message: err })
     } else {
-      const customer = findCustomer(db, decode)
+      const customer = maskCardNumber(findCustomer(db, decode))
       if (customer) {
         res.status(200).json({ status: 0, customer })
       } else {

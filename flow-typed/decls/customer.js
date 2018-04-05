@@ -32,7 +32,6 @@ declare class CustomerModel extends Entity {
 declare class CustomerViewModel extends CustomerModel {
   /* eslint-disable */
   getFullName: () => string,
-  getHidedCardNumber: () => string,
   getExpiry: () => string
 }
 

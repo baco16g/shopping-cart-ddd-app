@@ -70,7 +70,6 @@ function* login(eventKey: string, reqData: *): * {
   switch (status) {
     case 0:
       saveLocalStorageByKey(payload['data']['token'], 'token')
-      yield call(wait, 500)
       location.href = '/'
       return true
     case -2:
