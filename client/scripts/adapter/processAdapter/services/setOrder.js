@@ -18,11 +18,10 @@ function* fetchOrder(): * {
   const { payload, error } = yield call(API_FUNC.GET.ORDER, { customer_id })
   if (!payload && error) throw new Error('not found Order')
   yield all([
-    map(payload['data']['order_list'], OrderedMap => {
-      console.log(OrderedMap)
+    map(payload['data']['order_list'], ({ items, createdAt }) => {
       return put(
         orderListCreators.pushOrder({
-          orderList: camelizeKeys(OrderedMap)
+          orderList: camelizeKeys({ items, createdAt })
         })
       )
     })

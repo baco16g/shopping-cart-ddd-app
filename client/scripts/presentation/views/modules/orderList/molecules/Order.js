@@ -10,9 +10,11 @@ type Props = {
 }
 
 export default function Order({ productsVM, orderVM }: Props) {
-  const items = orderVM.getItems().map(({ productCode, quantity }, idx) => {
-    return <OrderItem key={idx} {...{ productsVM, productCode, quantity }} />
-  })
+  const items = orderVM
+    .getItems()
+    .map(({ productCode, quantity }: OrderItem, idx) => {
+      return <OrderItem key={idx} {...{ productsVM, productCode, quantity }} />
+    })
   const createdAt = orderVM.getFormatedCreatedAt()
 
   return (

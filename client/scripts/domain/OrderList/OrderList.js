@@ -3,7 +3,7 @@ import { List } from 'immutable'
 import Entity from '~/domain/Entity'
 import OrderViewModel from '~/domain/OrderList/OrderView'
 
-const props = (def: any): OrderSchema => {
+const props = (def: any): OrderListSchema => {
   return {
     list: List([]),
     ...def
@@ -21,19 +21,23 @@ const OrderListModel = (def?: any) =>
     getOrderListSize(): number {
       return this.getOrderList().size
     }
-    getOrderListJS(): any[] {
+    getOrderListJS(): Order[] {
       return this.getOrderList().toJS()
     }
 
     /**********************
      * Setter
      **********************/
-    pushOrder({ orderList }: { orderList: OrderSchema }): OrderListModel {
+    pushOrder({
+      items,
+      createdAt
+    }: {
+      createdAt: Date,
+      items: OrderItem[]
+    }): OrderListModel {
       return this.update('list', list =>
         list.push(
-          new OrderViewModel()
-            .restoreCreatedAt(orderList.createdAt)
-            .setItems(orderList.items)
+          new OrderViewModel().restoreCreatedAt(createdAt).setItems(items)
         )
       )
     }

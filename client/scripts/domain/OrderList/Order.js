@@ -21,9 +21,7 @@ const OrderModel = (def?: any) =>
     /**********************
      * Setter
      **********************/
-    setItems(
-      orderItems: Array<{ productCode: string, quantity: number }>
-    ): OrderModel {
+    setItems(orderItems: OrderItem[]): OrderModel {
       return this.set('items', orderItems)
     }
   }
