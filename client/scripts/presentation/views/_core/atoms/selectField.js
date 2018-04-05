@@ -19,7 +19,14 @@ export default function selectField({
   return (
     <Fragment>
       <label htmlFor={name}>{label}</label>
-      <select {...input}>{options}</select>
+      <select {...input}>
+        <Fragment>
+          <option value="" disabled selected>
+            ---
+          </option>
+          {options}
+        </Fragment>
+      </select>
       {touched &&
         ((error && <span>{error}</span>) ||
           (warning && <span>{warning}</span>))}
