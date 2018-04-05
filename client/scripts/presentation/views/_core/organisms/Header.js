@@ -25,6 +25,9 @@ export default enhancer(({ customerVM, logout }) => {
           <a href="/cart/">Cart</a>
         </li>
         <li className="st-Nav_Item">
+          <a href="/order/">Order</a>
+        </li>
+        <li className="st-Nav_Item">
           {customerExist ? (
             <a href="javascript:void(0)" onClick={logout}>
               Logout
