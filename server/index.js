@@ -19,10 +19,10 @@ const updateStock = require(path.join(PATH.SERVER, '/api/updateStock'))
 const postOrder = require(path.join(PATH.SERVER, '/api/postOrder'))
 
 server
+  .get('/', (_, res) => res.redirect('/products/'))
   .use(defaultMiddlewares)
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
-  .get('/', (_, res) => res.redirect('/products/'))
   .use(renderPugAsHtml)
   .get('/api/order', getOrder)
   .get('/api/auth', auth)
