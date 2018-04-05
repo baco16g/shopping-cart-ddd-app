@@ -5,8 +5,7 @@ import { fork, call, put, take } from 'redux-saga/effects'
 import {
   loadLocalStorageByKey,
   saveLocalStorageByKey,
-  deleteLocalStorageByKey,
-  wait
+  deleteLocalStorageByKey
 } from '~/adapter/processAdapter/services/utils/storage'
 import { creators as commonCreators } from '~/port/redux/common'
 import {

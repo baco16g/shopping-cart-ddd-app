@@ -1,5 +1,4 @@
 /* @flow */
-import { delay } from 'redux-saga'
 import { all, fork, call, put, take, select } from 'redux-saga/effects'
 import { map } from 'lodash'
 import { camelizeKeys } from 'humps'

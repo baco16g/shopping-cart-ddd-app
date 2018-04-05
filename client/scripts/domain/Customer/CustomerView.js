@@ -1,5 +1,4 @@
 /* @flow */
-import { repeat } from 'lodash'
 import CustomerModel from '~/domain/Customer/Customer'
 
 export default class CustomerViewModel extends CustomerModel({}) {

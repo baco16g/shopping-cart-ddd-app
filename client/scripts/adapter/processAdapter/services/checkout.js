@@ -1,7 +1,10 @@
 /* @flow */
 import { fork, call, put, take, select } from 'redux-saga/effects'
 import { decamelizeKeys } from 'humps'
-import { deleteLocalStorageByKey, wait } from '~/adapter/processAdapter/services/utils/storage'
+import {
+  deleteLocalStorageByKey,
+  wait
+} from '~/adapter/processAdapter/services/utils/storage'
 import { creators as commonCreators } from '~/port/redux/common'
 import {
   creators as cartCreators,
