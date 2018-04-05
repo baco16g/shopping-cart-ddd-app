@@ -41,7 +41,12 @@ const CustomerModel = (def?: any) =>
     /**********************
      * Setter
      **********************/
-    setCustomer({ customerId, email, volumeInfo, paymentInfo }): CustomerModel {
+    setCustomer({
+      customerId,
+      email,
+      volumeInfo,
+      paymentInfo
+    }: CustomerSchema): CustomerModel {
       return this.withMutations(m =>
         m
           .set('customerId', customerId)

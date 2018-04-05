@@ -1,5 +1,5 @@
 /* @flow */
-import React, { Fragment } from 'react'
+import React from 'react'
 import OrderItem from '~/presentation/views/modules/orderList/molecules/OrderItem'
 import TotalAmount from '~/presentation/views/modules/orderList/molecules/TotalAmount'
 
