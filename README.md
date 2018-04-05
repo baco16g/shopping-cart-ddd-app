@@ -82,6 +82,10 @@ $ yarn format
 
 その他、拡張系パッケージ等があります。
 
+## TODO
+
+* Unit / Component Testing (Jest)
+* StoryBook
 
 ## その他のドキュメント
 
