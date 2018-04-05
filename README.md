@@ -1,6 +1,6 @@
 # Redux DDD Sample Applications
 
-<img src="https://i-studio.commits.jp/ist-tech/rrd-boilerplate/blob/master/docs/thumb.png">
+<img src="./docs/thumb.png">
 
 ## 概要と背景
 
