@@ -9,7 +9,7 @@ type Props = {
   options: Array<any>
 }
 
-export default function renderSelectField({
+export default function selectField({
   input,
   name,
   label,

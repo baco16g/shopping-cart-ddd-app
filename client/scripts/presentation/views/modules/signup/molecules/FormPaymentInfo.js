@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field } from 'redux-form'
-import renderInputField from '~/presentation/views/_core/atoms/renderInputField'
-import renderSelectField from '~/presentation/views/_core/atoms/renderSelectField'
+import InputField from '~/presentation/views/_core/atoms/InputField'
+import selectField from '~/presentation/views/_core/atoms/selectField'
 import * as valid from '~/presentation/views/utils/validation'
 
 type Props = {
@@ -21,7 +21,7 @@ export default function FormPaymentInfo({ commonVM }: Props) {
             label="Card Number"
             name="cardNumber"
             type="tel"
-            component={renderInputField}
+            component={InputField}
             validate={[valid.required, valid.number]}
           />
         </div>
@@ -32,7 +32,7 @@ export default function FormPaymentInfo({ commonVM }: Props) {
             label="Contract Name"
             name="contractName"
             type="text"
-            component={renderInputField}
+            component={InputField}
             validate={[valid.required, valid.alphaNumeric]}
             normalize={value => value.toUpperCase()}
           />
@@ -43,7 +43,7 @@ export default function FormPaymentInfo({ commonVM }: Props) {
           <Field
             name="expiryMonth"
             label="Expiry Month"
-            component={renderSelectField}
+            component={selectField}
             options={expiryMonthOptions}
             validate={valid.required}
           />
@@ -52,7 +52,7 @@ export default function FormPaymentInfo({ commonVM }: Props) {
           <Field
             name="expiryYear"
             label="Expiry Year"
-            component={renderSelectField}
+            component={selectField}
             options={expiryYearOptions}
             validate={valid.required}
           />
@@ -62,7 +62,7 @@ export default function FormPaymentInfo({ commonVM }: Props) {
             label="CVC"
             name="cvc"
             type="tel"
-            component={renderInputField}
+            component={InputField}
             validate={[
               valid.required,
               valid.number,

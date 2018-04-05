@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field } from 'redux-form'
-import renderInputField from '~/presentation/views/_core/atoms/renderInputField'
+import InputField from '~/presentation/views/_core/atoms/InputField'
 import * as valid from '~/presentation/views/utils/validation'
 
 export default function FormCustomerInfo() {
@@ -13,7 +13,7 @@ export default function FormCustomerInfo() {
             label="User Id"
             name="customerId"
             type="text"
-            component={renderInputField}
+            component={InputField}
             validate={[valid.required, valid.alphaNumeric]}
           />
         </div>
@@ -24,7 +24,7 @@ export default function FormCustomerInfo() {
             label="First Name"
             name="firstName"
             type="text"
-            component={renderInputField}
+            component={InputField}
             validate={[valid.required, valid.alphaNumeric]}
           />
         </div>
@@ -33,7 +33,7 @@ export default function FormCustomerInfo() {
             label="Last Name"
             name="lastName"
             type="text"
-            component={renderInputField}
+            component={InputField}
             validate={[valid.required, valid.alphaNumeric]}
           />
         </div>
@@ -44,7 +44,7 @@ export default function FormCustomerInfo() {
             label="Email"
             name="email"
             type="email"
-            component={renderInputField}
+            component={InputField}
             validate={[valid.required, valid.email]}
           />
         </div>
@@ -55,7 +55,7 @@ export default function FormCustomerInfo() {
             label="Password"
             name="password"
             type="password"
-            component={renderInputField}
+            component={InputField}
             validate={[valid.required, valid.alphaNumeric]}
           />
         </div>

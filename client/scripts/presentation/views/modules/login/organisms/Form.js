@@ -5,7 +5,7 @@ import { compose, pure, withHandlers, type HOC } from 'recompose'
 import connector from '~/presentation/views/modules/login/hocs/connector'
 import submitHandler from '~/presentation/views/modules/login/hocs/withHandlers/submit'
 import Loading from '~/presentation/views/_core/atoms/Loading'
-import renderInputField from '~/presentation/views/_core/atoms/renderInputField'
+import InputField from '~/presentation/views/_core/atoms/InputField'
 import * as valid from '~/presentation/views/utils/validation'
 
 const enhancer: HOC<*, *> = compose(
@@ -35,7 +35,7 @@ export default enhancer(
                       label="Email"
                       name="email"
                       type="email"
-                      component={renderInputField}
+                      component={InputField}
                       validate={[valid.required, valid.email]}
                     />
                   </div>
@@ -46,7 +46,7 @@ export default enhancer(
                       label="Password"
                       name="password"
                       type="password"
-                      component={renderInputField}
+                      component={InputField}
                       validate={[valid.required, valid.alphaNumeric]}
                     />
                   </div>

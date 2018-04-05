@@ -9,7 +9,7 @@ type Props = {
   meta: Object
 }
 
-export default function renderInputField({
+export default function InputField({
   input,
   name,
   label,
