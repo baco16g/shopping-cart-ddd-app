@@ -1,5 +1,7 @@
 # Redux DDD Sample Applications
 
+<img src="https://i-studio.commits.jp/ist-tech/rrd-boilerplate/blob/master/docs/thumb.png">
+
 ## 概要と背景
 
 * 「ドメイン駆動設計」をReact / Reduxで実装した、学習用リポジトリです。
