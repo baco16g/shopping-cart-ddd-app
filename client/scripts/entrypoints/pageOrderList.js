@@ -59,7 +59,7 @@ const MainViewAdaptedStore = () => {
 }
 
 renderViews('data-react-header-app', HeaderViewAdaptedStore)
-renderViews('data-react-orderList-app', MainViewAdaptedStore)
+renderViews('data-react-orderlist-app', MainViewAdaptedStore)
 runRootSaga(sagaMiddleware)([
   commonSaga,
   authSaga,
