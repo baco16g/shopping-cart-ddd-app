@@ -83,5 +83,5 @@ $ yarn format
 
 ## その他のドキュメント
 
-* [ディレクトリ構成について]('./docs/directory.md')
-* [開発環境Tips]('./docs/tip.md)
+* [ディレクトリ構成について]('docs/directory.md')
+* [開発環境Tips]('docs/tip.md)
