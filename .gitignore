@@ -5,4 +5,4 @@ npm-debug.log*
 node_modules
 public
 
-server/db/index.json
+./server/db/index.json
