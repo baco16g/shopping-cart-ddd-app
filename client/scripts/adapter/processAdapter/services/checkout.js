@@ -1,7 +1,7 @@
 /* @flow */
 import { fork, call, put, take, select } from 'redux-saga/effects'
 import { decamelizeKeys } from 'humps'
-import { deleteLocalStorageByKey } from '~/adapter/processAdapter/services/utils/storage'
+import { deleteLocalStorageByKey, wait } from '~/adapter/processAdapter/services/utils/storage'
 import { creators as commonCreators } from '~/port/redux/common'
 import {
   creators as cartCreators,
@@ -82,6 +82,8 @@ function* subscribeToRequestCheckout(): * {
     yield call(reduceStock, 'requestCheckout')
     yield fork(resetCartItems)
     yield fork(saveOrder)
+    yield call(wait, 500)
+    location.href = '/order/'
   }
 }
 

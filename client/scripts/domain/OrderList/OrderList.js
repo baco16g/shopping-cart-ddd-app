@@ -29,12 +29,14 @@ const OrderListModel = (def?: any) =>
      * Setter
      **********************/
     pushOrder({
-      items,
-      createdAt
+      orderList
     }: {
-      createdAt: Date,
-      items: OrderItem[]
+      orderList: {
+        items: OrderItem[],
+        createdAt: Date
+      }
     }): OrderListModel {
+      const { items, createdAt } = orderList
       return this.update('list', list =>
         list.push(
           new OrderViewModel().restoreCreatedAt(createdAt).setItems(items)

@@ -5,7 +5,8 @@ import { fork, call, put, take } from 'redux-saga/effects'
 import {
   loadLocalStorageByKey,
   saveLocalStorageByKey,
-  deleteLocalStorageByKey
+  deleteLocalStorageByKey,
+  wait
 } from '~/adapter/processAdapter/services/utils/storage'
 import { creators as commonCreators } from '~/port/redux/common'
 import {
@@ -74,6 +75,7 @@ function* login(eventKey: string, reqData: *): * {
           ...camelizeKeys(payload['data']['customer'])
         })
       )
+      yield call(wait, 500)
       location.href = '/'
       return true
     case -2:
@@ -89,7 +91,7 @@ function* signup(eventKey: string, reqData: *): * {
   yield put(commonCreators.pushFetchingQueue({ eventkey: eventKey }))
   const { payload, err } = yield call(
     API_FUNC.POST.SIGNUP,
-    decamelizeKeys(Object.assing({}, reqData, { createdAt: new Date() }))
+    decamelizeKeys(Object.assign({}, reqData, { createdAt: new Date() }))
   )
   yield put(commonCreators.deleteFetchingQueue({ eventkey: eventKey }))
 
