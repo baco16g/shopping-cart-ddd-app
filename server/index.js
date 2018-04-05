@@ -22,6 +22,7 @@ server
   .use(defaultMiddlewares)
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
+  .get('/', (_, res) => res.redirect('/products/'))
   .use(renderPugAsHtml)
   .get('/api/order', getOrder)
   .get('/api/auth', auth)
