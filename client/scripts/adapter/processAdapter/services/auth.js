@@ -70,11 +70,6 @@ function* login(eventKey: string, reqData: *): * {
   switch (status) {
     case 0:
       saveLocalStorageByKey(payload['data']['token'], 'token')
-      yield put(
-        customerCreators.setCustomer({
-          ...camelizeKeys(payload['data']['customer'])
-        })
-      )
       yield call(wait, 500)
       location.href = '/'
       return true
