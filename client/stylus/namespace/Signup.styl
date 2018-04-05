@@ -1,0 +1,50 @@
+.signup-Container
+  card()
+
+  display flex
+  flex-wrap wrap
+  justify-content center
+  margin 0 auto
+  width 500px
+
+.signup-Container_Inner
+  padding 36px
+  width 100%
+
+.signup-Form_Block
+  &:not(:first-child)
+    margin-top 24px
+
+.signup-Form_Block_hdg
+  margin-bottom 24px
+  padding 6px 6px 6px 12px
+  border-left solid 6px $notice
+  color $notice
+  font-weight bold
+  font-size 21px
+
+.signup-Form_Row
+  formRow()
+
+.signup-Form_Group
+  fromGroup()
+
+.signup-Form_Error
+  error-md()
+
+.signup-Form_Submmit
+  margin-top 12px
+
+  &:not([disabled])
+    btn('notice')
+
+  &[disabled]
+    btn('disabled')
+
+    cursor not-allowed
+
+.signup-Form_SignUp
+  margin-top 12px
+  color $notice
+  text-align center
+  font-size 12px

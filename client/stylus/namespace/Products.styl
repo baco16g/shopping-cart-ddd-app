@@ -1,0 +1,55 @@
+.prdcts-Items
+  display flex
+  flex-wrap wrap
+
+.prdcts-Item
+  margin-top 36px
+  margin-left 36px
+  width calc(((100% - (36px * 2)) / 3))
+
+  card()
+
+  &:nth-child(3n+1)
+    margin-left 0
+
+  &:nth-child(-n+3)
+    margin-top 0
+
+  a
+    display block
+    backface-visibility hidden
+
+  img
+    display block
+    opacity 1
+    transition all .3s ease
+    transform scale(1)
+
+  &:hover
+    img
+      opacity .6
+      transition all .3s ease
+      transform scale(1.1)
+
+.prdcts-Item_Thumb
+  overflow hidden
+  background $black
+  line-height 0
+
+.prdcts-Item_Data
+  padding 21px
+
+.prdcts-Item_Name
+  color $black
+  word-break break-all
+  font-weight bold
+  font-size 21px
+  line-height 1.25
+
+  > a
+    text-decoration none
+
+.prdcts-Item_Price
+  margin-top 9px
+  color $notice
+  font-size 18px

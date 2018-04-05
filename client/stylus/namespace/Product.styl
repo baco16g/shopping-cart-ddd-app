@@ -1,0 +1,53 @@
+.prdct-Container
+  display flex
+  flex-wrap wrap
+  justify-content center
+  margin 0 auto
+  width 500px
+
+  card()
+
+.prdct-Container_Data
+  padding 36px
+
+.prdct-Details_Name
+  padding-bottom 6px
+  border-bottom solid 2px $black
+  color $black
+  word-break break-all
+  font-weight bold
+  font-size 24px
+  line-height 1.5
+
+.prdct-Details_Desc
+  margin-top 12px
+  color $black
+  font-size 15px
+  line-height 1.5
+
+.prdct-Sale
+  margin-top 24px
+  padding-top 24px
+  border-top dashed 1px $black
+
+.prdct-Sale_Price
+  color $notice
+  font-weight bold
+  font-size 21px
+
+.prdct-Sale_Stock
+  margin-top 12px
+  color $notice
+  font-weight bold
+  font-size 18px
+
+.prdct-Sale_Button
+  margin-top 24px
+
+  &:not([disabled])
+    btn('notice')
+
+  &[disabled]
+    btn('disabled')
+
+    cursor not-allowed

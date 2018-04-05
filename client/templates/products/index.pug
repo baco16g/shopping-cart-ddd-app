@@ -1,0 +1,13 @@
+extends /_layout/_global.pug
+
+block title
+  title Product list | Redux DDD Sample Applications
+
+block pageTitle
+  | Product list
+
+block container
+  div(data-react-products-app)
+
+block append script
+  script(src='/assets/javascripts/pageProducts.bundle.js')

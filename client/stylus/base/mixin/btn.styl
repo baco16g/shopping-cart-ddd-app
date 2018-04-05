@@ -1,0 +1,26 @@
+btn(type)
+  padding 12px 20px
+  width 100%
+  outline 0
+  border 0
+  border-radius 4px
+  text-transform uppercase
+  font-weight 500
+  font-size inherit
+  font-family inherit
+  line-height inherit
+  cursor pointer
+
+  if (type == 'notice')
+    background $notice
+    color $white
+
+  if (type == 'white')
+    border solid 1px $black
+    background $white
+    color $black
+
+  if (type == 'disabled')
+    border solid 1px $gray
+    background $gray
+    color $light-gray

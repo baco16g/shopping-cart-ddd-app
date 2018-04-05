@@ -1,0 +1,62 @@
+.crt-Container
+  margin 0 auto
+  max-width 600px
+
+  card()
+
+.crt-Box
+  padding 24px
+
+.crt-Item
+  display flex
+  align-items center
+  padding 12px 0
+
+  &:not(:first-child)
+    border-top dashed 1px $gray
+
+.crt-Item_Thumb
+  width 20%
+
+.crt-Item_Data
+  padding 12px
+  width 50%
+
+.crt-Item_Stock
+  width 10%
+
+.crt-Item_Stock_select
+  select()
+
+.crt-Item_Delete
+  padding 12px
+  width 20%
+  font-size 12px
+
+.crt-Item_Delete_button
+  btn('white')
+
+.crt-Item_Name
+  color $black
+  word-break break-all
+  font-size 15px
+  line-height 1.5
+
+.crt-Item_Price
+  margin-top 9px
+  color $notice
+  font-weight bold
+  font-size 18px
+
+.crt-PaymentNav_Button
+  btn('notice')
+
+.crt-TotalAmount
+  margin 0 24px
+  padding 12px
+  border-top dashed 2px $notice
+  border-bottom solid 2px $notice
+  color $notice
+  text-align right
+  font-weight bold
+  font-size 24px
