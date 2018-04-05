@@ -45,9 +45,9 @@ module.exports = (req, res) => {
     if (!decode || err) {
       res.status(400).json({ status: -1, message: err })
     } else {
-      const customer = maskCardNumber(findCustomer(db, decode))
+      const customer = findCustomer(db, decode)
       if (customer) {
-        res.status(200).json({ status: 0, customer })
+        res.status(200).json({ status: 0, customer: maskCardNumber(customer) })
       } else {
         res.status(200).json({ status: -2, message: 'User is not found' })
       }
