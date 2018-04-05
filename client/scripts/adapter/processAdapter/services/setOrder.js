@@ -1,18 +1,30 @@
 /* @flow */
-import { all, fork, call, put } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
+import { all, fork, call, put, take, select } from 'redux-saga/effects'
 import { map } from 'lodash'
 import { camelizeKeys } from 'humps'
 import { creators as commonCreators } from '~/port/redux/common'
-import { creators as orderListCreators } from '~/port/redux/packages/orderList'
+import {
+  types as OrderListTypes,
+  creators as orderListCreators
+} from '~/port/redux/packages/orderList'
 import API_FUNC from '~/adapter/processAdapter/services/constants/API_FUNC'
 
-function* setOrder(): * {
+function* fetchOrder(): * {
   yield put(commonCreators.pushFetchingQueue({ eventkey: 'setOrder' }))
-  const { payload, error } = yield call(API_FUNC.GET.ORDER)
+  const customerVM = yield select(state => state.customerVM)
+  const customer_id = customerVM.getCustomerID()
+
+  const { payload, error } = yield call(API_FUNC.GET.ORDER, { customer_id })
   if (!payload && error) throw new Error('not found Order')
   yield all([
-    map(payload['data'], order => {
-      return put(orderListCreators.pushOrder({ order: camelizeKeys(order) }))
+    map(payload['data']['order_list'], OrderedMap => {
+      console.log(OrderedMap)
+      return put(
+        orderListCreators.pushOrder({
+          orderList: camelizeKeys(OrderedMap)
+        })
+      )
     })
   ])
   yield put(commonCreators.deleteFetchingQueue({ eventkey: 'setOrder' }))
@@ -21,7 +33,12 @@ function* setOrder(): * {
 /**********************************
  * subscribe Domain Actions
  *********************************/
+function* subscribeToSetInitialOrderList(): * {
+  yield take(OrderListTypes.setInitialOrderList)
+  yield delay(1000)
+  yield fork(fetchOrder)
+}
 
 export default function*(): * {
-  yield fork(setOrder)
+  yield fork(subscribeToSetInitialOrderList)
 }

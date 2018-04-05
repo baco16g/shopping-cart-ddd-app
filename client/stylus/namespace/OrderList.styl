@@ -1,0 +1,59 @@
+.ordrlst-Container
+  margin 0 auto
+  max-width 600px
+
+.ordrlst-Section
+  padding 24px
+  card()
+
+.ordrlst-Order
+  &:not(:first-child)
+    margin-top 24px
+
+.ordrlst-Order_Date
+  color $black
+  margin-bottom 12px
+  span
+    font-size 14px
+    &:last-child
+      margin-left 12px
+
+.ordrlst-Order_Item
+  display flex
+  align-items center
+  padding 12px 0
+
+  &:not(:first-child)
+    border-top dashed 1px $gray
+
+.ordrlst-Order_Item_thumb
+  width 20%
+
+.ordrlst-Order_Item_stock
+  width 10%
+  text-align center
+
+.ordrlst-Order_Item_name
+  padding 0 12px
+  width 45%
+  color $black
+  word-break break-all
+  font-size 15px
+  line-height 1.5
+
+.ordrlst-Order_Item_price
+  padding 0 12px
+  width 25%
+  color $notice
+  font-weight bold
+  font-size 18px
+
+.ordrlst-Order_TotalAmount
+  padding 12px
+  border-top dashed 2px $notice
+  border-bottom solid 2px $notice
+  color $notice
+  text-align right
+  font-weight bold
+  font-size 24px
+

@@ -17,7 +17,7 @@ const customerExist = (db, { customer_id }) => {
 }
 
 const findCustomerIndex = (db, { customer_id }) => {
-  return db['order_list'].findIndex(o => o.customer_id === customer_id)
+  return db['order'].findIndex(o => o.customer_id === customer_id)
 }
 
 /***********************
@@ -25,26 +25,34 @@ const findCustomerIndex = (db, { customer_id }) => {
  ***********************/
 module.exports = (req, res) => {
   const { customer_id, items, created_at } = req.body
+
+  const formatedItems = items.map(({ product_code, quantity }) => {
+    return {
+      product_code,
+      quantity
+    }
+  })
+
   const order = {
-    items,
+    items: formatedItems,
     created_at
   }
 
   const db = getDB()
-  if (db.hasOwnProperty('order_list')) {
+  if (db.hasOwnProperty('order')) {
     const exist = customerExist(db, { customer_id })
     if (exist) {
       const idx = findCustomerIndex(db, { customer_id })
       console.log(idx)
       if (idx < 0) {
-        db['order_list'].push({
+        db['order'].push({
           customer_id,
           order: [order]
         })
         fs.writeFileSync(dbPath, JSON.stringify(db))
         res.status(200).json({ status: 0, message: 'your order saved.' })
       } else {
-        db['order_list'][idx]['order'].push(order)
+        db['order'][idx]['order'].push(order)
         fs.writeFileSync(dbPath, JSON.stringify(db))
         res.status(200).json({ status: 0, message: 'your order saved.' })
       }
@@ -52,7 +60,7 @@ module.exports = (req, res) => {
       res.status(200).json({ status: -2, message: 'not found customer' })
     }
   } else {
-    db['order_list'] = [
+    db['order'] = [
       {
         customer_id,
         order: [order]

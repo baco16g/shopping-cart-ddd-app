@@ -78,29 +78,14 @@ const adminUserList = [
   }
 ]
 
-const orderList = [
-  {
-    customer_id: 'admin',
-    order: [
-      {
-        items: [
-          {
-            product_code: '',
-            quantity: ''
-          }
-        ],
-        created_at: new Date()
-      }
-    ]
-  }
-]
+const orderList = []
 
 fs.open(dbPath, 'r', (err, data) => {
   const db = JSON.parse(data)
   const json = Object.assign({}, db, {
     products: productList(),
     users: adminUserList,
-    order_list: orderList
+    order: orderList
   })
   console.log(JSON.stringify(json))
 })

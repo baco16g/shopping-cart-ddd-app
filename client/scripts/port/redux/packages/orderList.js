@@ -3,7 +3,7 @@
 import createActionReducer from '~/port/lib/createActionReducer'
 
 const { types, creators, reducer } = createActionReducer(
-  ['pushOrder'],
+  ['pushOrder', 'setInitialOrderList'],
   '/orderList/'
 )
 

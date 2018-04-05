@@ -23,6 +23,9 @@ const CommonModel = () =>
     hasEventkeyInFetchingQueue(): boolean {
       return this.getFetchingQueueSize() > 0
     }
+    hasTargetEventKeyInFetchingQueue(eventkey: string): boolean {
+      return this.getFetchingQueue().includes(eventkey)
+    }
 
     // URL Query
     getQueries(): Map {

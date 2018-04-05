@@ -1,36 +1,31 @@
 /* @flow */
+import { List } from 'immutable'
 import Entity from '~/domain/Entity'
 
 const props = (def: any): OrderSchema => {
   return {
-    productCode: '',
-    quantity: 0,
+    items: List([]),
     ...def
   }
 }
 
 const OrderModel = (def?: any) =>
   class extends Entity(props(def)) {
-    constructor(args: OrderSchema) {
-      super()
-      return this.withMutations(m =>
-        m.set('productCode', args.productCode).set('quantity', args.quantity)
-      )
-    }
-
     /**********************
      * Getter
      **********************/
-    getProductCode(): string {
-      return this.get('productCode')
-    }
-    getQuantity(): number {
-      return this.get('quantity')
+    getItems(): [] {
+      return this.get('items')
     }
 
     /**********************
      * Setter
      **********************/
+    setItems(
+      orderItems: Array<{ productCode: string, quantity: number }>
+    ): OrderModel {
+      return this.set('items', orderItems)
+    }
   }
 
 export default OrderModel

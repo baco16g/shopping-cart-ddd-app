@@ -2,6 +2,7 @@
 
 import getProducts from '~/adapter/processAdapter/services/constants/api/getProducts'
 import fetchCustoemr from '~/adapter/processAdapter/services/constants/api/fetchCustomer'
+import fetchOrder from '~/adapter/processAdapter/services/constants/api/fetchOrder'
 import login from '~/adapter/processAdapter/services/constants/api/login'
 import signup from '~/adapter/processAdapter/services/constants/api/signup'
 import updateStock from '~/adapter/processAdapter/services/constants/api/updateStock'

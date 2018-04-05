@@ -1,7 +1,7 @@
 /* @flow */
 import { List } from 'immutable'
 import Entity from '~/domain/Entity'
-import OrderViewModel from '~/domain/Orders/OrderView'
+import OrderViewModel from '~/domain/OrderList/OrderView'
 
 const props = (def: any): OrderSchema => {
   return {
@@ -28,8 +28,14 @@ const OrderListModel = (def?: any) =>
     /**********************
      * Setter
      **********************/
-    pushOrder({ order }: { order: OrderSchema }): OrderListModel {
-      return this.update('list', list => list.push(new OrderViewModel(order)))
+    pushOrder({ orderList }: { orderList: OrderSchema }): OrderListModel {
+      return this.update('list', list =>
+        list.push(
+          new OrderViewModel()
+            .restoreCreatedAt(orderList.createdAt)
+            .setItems(orderList.items)
+        )
+      )
     }
   }
 

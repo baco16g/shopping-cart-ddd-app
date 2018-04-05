@@ -2,6 +2,7 @@
 
 import { Record } from 'immutable'
 import uuid from 'uuid'
+import moment from 'moment'
 
 const props = (def: any): EntitySchema => ({
   id: 0,
@@ -34,6 +35,12 @@ const Entity = (def: any) =>
     }
     getUpdatedAt(): Date {
       return this.get('updatedAt')
+    }
+    getFormatedCreatedAt(): string {
+      return moment(this.getCreatedAt()).format('llll')
+    }
+    getFormatedUpdatedAt(): string {
+      return moment(this.getUpdatedAt()).format('llll')
     }
 
     /**********************
