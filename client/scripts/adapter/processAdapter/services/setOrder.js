@@ -33,9 +33,14 @@ function* fetchOrder(): * {
  * subscribe Domain Actions
  *********************************/
 function* subscribeToSetInitialOrderList(): * {
-  yield take(OrderListTypes.setInitialOrderList)
-  yield delay(1000)
-  yield fork(fetchOrder)
+  while (true) {
+    yield take(OrderListTypes.setInitialOrderList)
+    const customerVM = yield select(state => state.customerVM)
+    const exist = customerVM.exist()
+    if (!exist) continue
+    yield fork(fetchOrder)
+    break
+  }
 }
 
 export default function*(): * {
